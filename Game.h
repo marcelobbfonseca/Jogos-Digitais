@@ -1,6 +1,7 @@
 #include "SDL2/SDL.h"
 #include "SDL2/SDL_image.h"
 #include "State.h"
+#include "Sprite.h"
 
 #ifndef MEUPROJETO_GAME_H
 #define MEUPROJETO_GAME_H

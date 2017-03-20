@@ -8,12 +8,10 @@
 
 using namespace std;
 #include "Game.h"
+#include "State.h"
+#include "Sprite.h"
 
 
-
-void validatePointer(){
-	
-}
 
 int main(int argc, char const *argv[]){
 	int heigth, width;

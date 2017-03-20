@@ -1,4 +1,5 @@
-
+#include "SDL2/SDL.h"
+#include "SDL2/SDL_image.h"
 #ifndef MEUPROJETO_SPRITE_H
 #define MEUPROJETO_SPRITE_H
 
@@ -9,7 +10,7 @@ public:
 	Sprite();
 	Sprite(string file);
 	void Open(string file);
-	void SetClip(int x, int y);
+	void SetClip(int x, int y, int w, int h);
 	void Render( int x, int y);
 	int GetWidth();
 	int GetHeight();
@@ -17,7 +18,7 @@ public:
 	~Sprite();
 private:
 	SDL_Texture* texture;
-	SDL_Rect clipsRect; //clipping rectangle
+	SDL_Rect clipRect; //clipping rectangle
 	int width, height;
 
 	

@@ -12,14 +12,13 @@ Game Project in C++ using the SDL library
 
 
 Setting up environment
- 
+
 To run the project you must install the SDL2 libraries.
 For linux:
 	
 	sudo apt-get install libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev libsdl2-ttf-dev
   
   
-
 
 
 Author Marcelo
