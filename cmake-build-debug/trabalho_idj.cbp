@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="trabalho_idj"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/home/marcelo/Documentos/IDJ/trabalho_idj/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/marcelo/Documentos/IDJ/trabalho_idj/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/marcelo/Documentos/IDJ/trabalho_idj/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/marcelo/Documentos/IDJ/trabalho_idj/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/marcelo/Documentos/IDJ/trabalho_idj/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/marcelo/Documentos/IDJ/trabalho_idj/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/marcelo/Documentos/IDJ/trabalho_idj/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/marcelo/Documentos/IDJ/trabalho_idj/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/marcelo/Documentos/IDJ/trabalho_idj/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/marcelo/Documentos/IDJ/trabalho_idj/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/home/marcelo/Documentos/IDJ/trabalho_idj/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/marcelo/Documentos/IDJ/trabalho_idj/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/marcelo/Documentos/IDJ/trabalho_idj/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/marcelo/Documentos/IDJ/trabalho_idj/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/marcelo/Documentos/IDJ/trabalho_idj/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="trabalho_idj">
+				<Option output="/home/marcelo/Documentos/IDJ/trabalho_idj/cmake-build-debug/trabalho_idj" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/marcelo/Documentos/IDJ/trabalho_idj/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/4.8/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/4.8/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/usr/include/c++/4.8"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/4.8"/>
+					<Add directory="/usr/include/c++/4.8/backward"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/marcelo/Documentos/IDJ/trabalho_idj/cmake-build-debug/Makefile&quot;  VERBOSE=1 trabalho_idj"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/marcelo/Documentos/IDJ/trabalho_idj/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/marcelo/Documentos/IDJ/trabalho_idj/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/marcelo/Documentos/IDJ/trabalho_idj/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="trabalho_idj/fast">
+				<Option output="/home/marcelo/Documentos/IDJ/trabalho_idj/cmake-build-debug/trabalho_idj" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/marcelo/Documentos/IDJ/trabalho_idj/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/4.8/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/4.8/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/usr/include/c++/4.8"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/4.8"/>
+					<Add directory="/usr/include/c++/4.8/backward"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/marcelo/Documentos/IDJ/trabalho_idj/cmake-build-debug/Makefile&quot;  VERBOSE=1 trabalho_idj/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/marcelo/Documentos/IDJ/trabalho_idj/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/marcelo/Documentos/IDJ/trabalho_idj/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/marcelo/Documentos/IDJ/trabalho_idj/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/home/marcelo/Documentos/IDJ/trabalho_idj/Game.cpp">
+			<Option target="trabalho_idj"/>
+		</Unit>
+		<Unit filename="/home/marcelo/Documentos/IDJ/trabalho_idj/Game.h">
+			<Option target="trabalho_idj"/>
+		</Unit>
+		<Unit filename="/home/marcelo/Documentos/IDJ/trabalho_idj/Sprite.cpp">
+			<Option target="trabalho_idj"/>
+		</Unit>
+		<Unit filename="/home/marcelo/Documentos/IDJ/trabalho_idj/Sprite.h">
+			<Option target="trabalho_idj"/>
+		</Unit>
+		<Unit filename="/home/marcelo/Documentos/IDJ/trabalho_idj/State.cpp">
+			<Option target="trabalho_idj"/>
+		</Unit>
+		<Unit filename="/home/marcelo/Documentos/IDJ/trabalho_idj/State.h">
+			<Option target="trabalho_idj"/>
+		</Unit>
+		<Unit filename="/home/marcelo/Documentos/IDJ/trabalho_idj/main.cpp">
+			<Option target="trabalho_idj"/>
+		</Unit>
+		<Unit filename="/home/marcelo/Documentos/IDJ/trabalho_idj/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>
