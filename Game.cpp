@@ -1,47 +1,58 @@
 #include <iostream>
 using namespace std;
-
 #include "Game.h"
+
+//1 duvida 90%
+Game* Game::instance=nullptr;
 
 Game::Game(string title, int width, int height){
 	bool funfou = true;
-	Uint32 flags=0;
 
 	if(instance != nullptr){
 		instance = this;
+	}else{
+		cout << "\nERRO:instance diferente de null "<< __LINE__ << __FILE__<< endl;
+		showGameError();
 	}
-	SDL_initialize();
+	initialize();
 	
 	const char *const_title = title.c_str();
 	window = SDL_CreateWindow(const_title, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width,height ,0);
+	
 	if(window != nullptr){
-		flags = SDL_RENDERER_SOFTWARE | SDL_RENDERER_PRESENTVSYNC | SDL_RENDERER_ACCELERATED | SDL_RENDERER_TARGETTEXTURE;
-		renderer = SDL_CreateRenderer(window,-1,flags);
+		renderer = SDL_CreateRenderer(window,-1,SDL_RENDERER_ACCELERATED);
 		if(renderer == nullptr){
-			cout << SDL_GetError() << endl;
-			exit(1);		
+			cout <<__LINE__<<" "<< __FILE__<< endl;
+			showGameError();	
 		}
 	}else{
-		cout << SDL_GetError() << endl;
-		exit(1);		
+		cout <<__LINE__<<" "<< __FILE__<< endl;
+		showGameError();		
 	}
-	state = nullptr;//inicializar state com???
+	
+	state = new State();
+	cout << "Alooo "<< __LINE__ << __FILE__<< endl;
 }
 
-void Game::SDL_initialize(){
+void Game::initialize(){
 	int sdl_init, img_init;
 
 	sdl_init = SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO | SDL_INIT_TIMER);
 	img_init = IMG_Init(IMG_INIT_JPG | IMG_INIT_PNG | IMG_INIT_TIF);
 
 	if(sdl_init || !img_init){
-		cout << SDL_GetError() << endl;
-		exit(1);
+		cout <<__LINE__<<" " << __FILE__<< endl;
+		showGameError();
 	}
-
 	return;
 }
-//Game*
+
+void Game::showGameError(){
+	cout << SDL_GetError() << " "<< __LINE__ << __FILE__<< endl;
+	exit(1);
+}
+
+
 Game& Game::GetInstance(){
 	return *instance;
 }
@@ -56,7 +67,9 @@ SDL_Renderer* Game::GetRenderer(){
 }
 void Game::Run(){
 	while(state->QuitRequested()==false){
-		//call update e render
+		//pt 1
+		//pt 2
+		//pt 3call update e render
 		state->Update(0.0);
 		state->Render();
 		SDL_RenderPresent(renderer);//update screen
@@ -68,13 +81,16 @@ void Game::Run(){
 		SDL_Delay(33); 
 
 		
-
+		if(state->QuitRequested())
+			break;
 	}//end while main loop
 }
 
 Game::~Game(){
+
+	IMG_Quit();
+	delete[] state;
 	SDL_DestroyRenderer(renderer);
 	SDL_DestroyWindow(window);
-	IMG_Quit();
 	SDL_Quit();
 }

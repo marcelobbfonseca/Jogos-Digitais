@@ -14,15 +14,15 @@ using namespace std;
 
 
 int main(int argc, char const *argv[]){
-	int heigth, width;
-	string title;
+	int height, width;
+	string title = "Marcelo 110130766";
 
-	title = "Cerviço Cecreto Sentral";
-	heigth = 400;
-	width = 600;
-
-	Game game(title,width,heigth);
+	width = 1024;
+	height = 600;
 	
+	Game game(title,width,height);
+	
+	//game.run();
 
 	return 0;
 }

@@ -3,16 +3,19 @@
 using namespace std;
 
 #include "State.h"
-#include "Game.h"
 
+//duvida instaciar
 State::State(){
-	//inicializa quitrequested e instancia sprite
+	//e instancia sprite. chamar o constr de sprite
+	quitRequested = false;
+
+}
+State::~State(){
 
 }
 
-
 void State::LoadAssets(){
-
+ // "Recursos/img/ocean.jpg"
 }
 
 void State::Update(float dt){
@@ -21,7 +24,7 @@ void State::Update(float dt){
  		quitRequested = true;
 }
 
-
+//duvida rend
 void State::Render(){
 //renderizar bg
 }

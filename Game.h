@@ -1,7 +1,7 @@
+
 #include "SDL2/SDL.h"
 #include "SDL2/SDL_image.h"
 #include "State.h"
-#include "Sprite.h"
 
 #ifndef MEUPROJETO_GAME_H
 #define MEUPROJETO_GAME_H
@@ -15,11 +15,12 @@ public:
 	void Run();
 	SDL_Renderer* GetRenderer();
 	State& GetState();
-	Game& GetInstance();
-	void SDL_initialize();
+	static Game& GetInstance();
+	void initialize();
+	void showGameError();
 private:
 
-	Game* instance;
+	static Game* instance;
 	SDL_Window* window;
 	SDL_Renderer* renderer;
 	State* state;
