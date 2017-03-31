@@ -2,3 +2,8 @@
 GameObject::GameObject(){
 	
 }
+
+
+GameObject::~GameObject(){
+	
+}

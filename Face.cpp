@@ -3,6 +3,7 @@
 
 
 Face::Face(float x, float y){
+	sp = new Sprite();
 	sp.Open("img/penguinface.png");
 	hitpoints = FULL_HEALTH;
 	//coordenadas do canto superio esquerdo: x, y
@@ -32,6 +33,6 @@ void Face::isDead(){
 
 
 Face::~Face(){
-
+	delete sp;
 }
 
