@@ -15,9 +15,9 @@ public:
 	void Run();
 	SDL_Renderer* GetRenderer();
 	State& GetState();
+	
 	static Game& GetInstance();
 	void initialize();
-	void showGameError();
 private:
 
 	static Game* instance;

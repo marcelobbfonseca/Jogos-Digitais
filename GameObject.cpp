@@ -1,0 +1,4 @@
+
+GameObject::GameObject(){
+	
+}

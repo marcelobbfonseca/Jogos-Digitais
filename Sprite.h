@@ -1,7 +1,7 @@
 #include "SDL2/SDL.h"
 #include "SDL2/SDL_image.h"
-#ifndef MEUPROJETO_SPRITE_H
-#define MEUPROJETO_SPRITE_H
+#ifndef SPRITE_H
+#define SPRITE_H
 
 
 class Sprite

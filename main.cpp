@@ -1,10 +1,15 @@
-// g++ -std=c++11 teste.cpp -lSDL2 -lSDL2_image -lSDL2_mixer -lSDL2_ttf
+#ifdef _WIN32
+	//windows
+#elif __APPLE__
+	#include "TargetConditionals.h"
+#elif __linux__
+	//linux
+#else
+	//something else 0_0
+#endif
+
 #include <iostream>
 #include <string>
-#include "SDL2/SDL.h"
-#include "SDL2/SDL_image.h"
-#include "SDL2/SDL_mixer.h"
-#include "SDL2/SDL_ttf.h"
 
 using namespace std;
 #include "Game.h"
@@ -12,6 +17,7 @@ using namespace std;
 #include "Sprite.h"
 
 
+//use valgrind --leak-check=full ./vamola
 
 int main(int argc, char const *argv[]){
 	int height, width;
@@ -22,7 +28,7 @@ int main(int argc, char const *argv[]){
 	
 	Game game(title,width,height);
 	
-	//game.run();
+	game.Run();
 
 	return 0;
 }

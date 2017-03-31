@@ -1,20 +1,20 @@
 #include <iostream>
+#include <ctime>
+#include <cstdlib>
 using namespace std;
 #include "Game.h"
-
-//1 duvida 90%
-Game* Game::instance=nullptr;
+#include "error.h"
+Game* Game::instance= nullptr;
 
 Game::Game(string title, int width, int height){
-	bool funfou = true;
 
-	if(instance != nullptr){
-		instance = this;
+
+	if(nullptr != instance ){
+		printError(__LINE__, "Exista uma segunda instancia do jogo! " ,__FILE__);
 	}else{
-		cout << "\nERRO:instance diferente de null "<< __LINE__ << __FILE__<< endl;
-		showGameError();
+		instance = this;
 	}
-	initialize();
+	initialize();//inicializa SDL e IMG init
 	
 	const char *const_title = title.c_str();
 	window = SDL_CreateWindow(const_title, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width,height ,0);
@@ -22,36 +22,30 @@ Game::Game(string title, int width, int height){
 	if(window != nullptr){
 		renderer = SDL_CreateRenderer(window,-1,SDL_RENDERER_ACCELERATED);
 		if(renderer == nullptr){
-			cout <<__LINE__<<" "<< __FILE__<< endl;
-			showGameError();	
+			printError(__LINE__, SDL_GetError() ,__FILE__);	
 		}
 	}else{
-		cout <<__LINE__<<" "<< __FILE__<< endl;
-		showGameError();		
+		printError(__LINE__, SDL_GetError() ,__FILE__);	
 	}
-	
+
+	srand(time(NULL));
+
 	state = new State();
-	cout << "Alooo "<< __LINE__ << __FILE__<< endl;
 }
 
 void Game::initialize(){
-	int sdl_init, img_init;
+	unsigned int img_init;
 
-	sdl_init = SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO | SDL_INIT_TIMER);
+	if(SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO | SDL_INIT_TIMER))
+		printError(__LINE__, SDL_GetError() ,__FILE__);
+
 	img_init = IMG_Init(IMG_INIT_JPG | IMG_INIT_PNG | IMG_INIT_TIF);
 
-	if(sdl_init || !img_init){
-		cout <<__LINE__<<" " << __FILE__<< endl;
-		showGameError();
-	}
+	if(img_init==false)
+		printError(__LINE__, SDL_GetError() ,__FILE__);
+	
 	return;
 }
-
-void Game::showGameError(){
-	cout << SDL_GetError() << " "<< __LINE__ << __FILE__<< endl;
-	exit(1);
-}
-
 
 Game& Game::GetInstance(){
 	return *instance;
@@ -66,13 +60,17 @@ SDL_Renderer* Game::GetRenderer(){
 	return renderer;
 }
 void Game::Run(){
+	state->LoadAssets();
 	while(state->QuitRequested()==false){
-		//pt 1
-		//pt 2
-		//pt 3call update e render
-		state->Update(0.0);
+		/*pt 1 */
+		
+		/*pt 2 */
+
+		/*pt 3call update e render */
+		state->Update();
 		state->Render();
-		SDL_RenderPresent(renderer);//update screen
+		SDL_RenderPresent(renderer);//update screen   //nao eh isso
+		
 		
 		/*		*		*		*		*		*		*		*		*		*
 		 *Delay processor in 33 milisecound for the next frame(1 frame per 33ms)* 
@@ -80,17 +78,17 @@ void Game::Run(){
 		 * 		*		*		*		*		*		*		*		*		*/
 		SDL_Delay(33); 
 
-		
-		if(state->QuitRequested())
-			break;
 	}//end while main loop
 }
 
 Game::~Game(){
 
 	IMG_Quit();
-	delete[] state;
+	delete state;
 	SDL_DestroyRenderer(renderer);
 	SDL_DestroyWindow(window);
 	SDL_Quit();
+	
 }
+
+
