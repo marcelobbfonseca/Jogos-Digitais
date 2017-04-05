@@ -1,3 +1,9 @@
+
+
+#ifndef VEC2_H
+#define VEC2_H
+
+//expressa um vetor no R2, que pode tanto representar uma posição no espaço como uma grandeza.
 class Vec2
 {
 public:
@@ -6,3 +12,5 @@ public:
 	~Vec2();
 	
 };
+
+#endif

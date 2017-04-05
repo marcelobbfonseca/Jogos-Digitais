@@ -1,46 +1,55 @@
 #include <iostream>
 #include <string>
+#include <vector>
+#include <memory>
 using namespace std;
 
+#include "SDL2/SDL.h"
+#include "SDL2/SDL.h"
+#include "GameObject.h"
+#include "Face.h"
 #include "State.h"
-
 State::State(){
 	//instanciar sprite
-	bg = new Sprite();
+	//bg = new Sprite();
 	quitRequested = false;
 
 }
 
 void State::LoadAssets(){
  bg.Open("img/ocean.jpg");
+
 }
 
 void State::Update(){
  	Input();
  	//checking if any face has died
-	for(int i = 0; i < objectArray.size();i++){
+	for(int i = 0; i < objectArray.size(); i++){
 
-		if((Face *)objectArray[i]->isDead()){
-			iterator it = objectArray.begin() + i;
-			objectArray.erase(it);
+		if(objectArray[i]->isDead()){
+
+			objectArray.erase(objectArray.begin()+i); // if fails try using: .at(i)
 		}
 
 
  	}//end for objArrayLoop
 
+
+
+
+
 }
 
 void State::Render(){
 	bg.Render(0, 0);
-	//percorre array chamando render de todos os objetos .for
+	//render all objects .for loop
 	for(int i = 0; i < objectArray.size(); i++)
-		objectArray[i].Render();
+		objectArray[i]->Render();
 
 }
 void State::AddObject(int mouseX, int mouseY){
 
-	Face *face = new Face(mouseX,mouseY);
-
+    objectArray.emplace_back(std::unique_ptr<Face>( new Face(mouseX, mouseY) ) );
 }
 
 bool State::QuitRequested(){
@@ -48,11 +57,7 @@ bool State::QuitRequested(){
 }
 
 void State::Input(){
-	/*O   corpo   dessa   função   está   disponível   no   Moodle.   Podem   ser  
-necessários   alguns   ajustes   nele   para   se   adequar   aos   nomes   de   variáveis   ou  
-funções   do   seu   código.   Além   disso,   você   pode   tirar   a   chamada   à  
-SDL_QuitRequested   em   Update(),   já   que   Input   cuida   de   eventos   de  
-SDL_QUIT para nós. */
+
     SDL_Event event;
     int mouseX, mouseY;
 
@@ -63,9 +68,9 @@ SDL_QUIT para nós. */
     while (SDL_PollEvent(&event)) {
 
 	 	//click X or alt+f4 for quit condition
-        if(SDL_QuitRequested())
- 			quitRequested = true;
-        
+        if(event.type == SDL_QUIT) 
+            quitRequested = true;
+
         // Se o evento for clique...
         if(event.type == SDL_MOUSEBUTTONDOWN) {
 
@@ -79,12 +84,12 @@ SDL_QUIT para nós. */
                 // Esse código, assim como a classe Face, é provisório. Futuramente, para
                 // chamar funções de GameObjects, usaremos objectArray[i]->função() direto.
 
-                if(face->box.IsInside((float)mouseX, (float)mouseY)) {
-                    // Aplica dano
+                //if(face->box.IsInside((float)mouseX, (float)mouseY)) {
+                    // Apply damage
                     face->Damage(rand() % 10 + 10);
                     // Sai do loop (só queremos acertar um)
                     break;
-                }
+                //}
             }
         }
         if( event.type == SDL_KEYDOWN ) {
@@ -102,6 +107,6 @@ SDL_QUIT para nós. */
 }//end State::Input
 
 State::~State(){
-	delete bg;
+	//delete bg;
 	objectArray.clear();
 }

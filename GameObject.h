@@ -1,3 +1,5 @@
+
+#include "SDL2/SDL.h"
 #include "Rect.h"
 
 #ifndef GAMEOBJECT_H
@@ -7,11 +9,11 @@ class GameObject
 {
 public:
 	GameObject();
-	void Update(float dt);
-	void Render();
-	bool isDead();
+	virtual void Update(float dt)=0;
+	virtual void Render()=0;
+	virtual bool isDead()=0;
 	~GameObject();
-	Rect box //dimensao
+	Rect box; //dimensao
 	
 };
 

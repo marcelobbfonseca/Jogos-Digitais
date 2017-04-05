@@ -1,28 +1,35 @@
 
 #include "Face.h"
 
-
+//parametros sao coordenadas do canto superio esquerdo: (x, y)
 Face::Face(float x, float y){
-	sp = new Sprite();
+
+	//sp = new Sprite();
+
 	sp.Open("img/penguinface.png");
 	hitpoints = FULL_HEALTH;
-	//coordenadas do canto superio esquerdo: x, y
-	box.x = sp.width; //x
-	box.y = sp.height;//y
+	
+	box.w= sp.GetWidth();
+ 	box.h= sp.GetHeight();
+
+	box.x= x; // x-(box.w*0.5);
+ 	box.y= y; // y-(box.h*0.5);
 }
 
 
-Face::Damage(int damage){
+void Face::Damage(int damage){
 	hitpoints = hitpoints - damage;
+	return;
+}	
 
-}
 void Face::Update(float dt){
-
+	
 }
 void Face::Render(){
-	//renderiza sp na pos atual
+	sp.Render(box.x, box.y);
+	return;
 }
-void Face::isDead(){
+bool Face::isDead(){
 	if(hitpoints <= 0)
 		return true;
 	else
@@ -33,6 +40,6 @@ void Face::isDead(){
 
 
 Face::~Face(){
-	delete sp;
+	//delete sp;
 }
 

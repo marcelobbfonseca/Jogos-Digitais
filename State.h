@@ -24,7 +24,7 @@ public:
 private:
 	Sprite bg;
 	bool quitRequested;
-	//trab2
+	//atributos trab2
 	std::vector<std::unique_ptr<GameObject>> objectArray;
 
 };

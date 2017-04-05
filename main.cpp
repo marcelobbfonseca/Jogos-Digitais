@@ -12,6 +12,7 @@
 #include <string>
 
 using namespace std;
+
 #include "Game.h"
 #include "State.h"
 #include "Sprite.h"

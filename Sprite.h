@@ -1,7 +1,11 @@
 #include "SDL2/SDL.h"
 #include "SDL2/SDL_image.h"
+
 #ifndef SPRITE_H
 #define SPRITE_H
+#include <iostream>
+#include <string>
+using namespace std;
 
 
 class Sprite

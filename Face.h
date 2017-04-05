@@ -1,5 +1,5 @@
 #include "GameObject.h"
-#include "sprite.h"
+#include "Sprite.h"
 #include "Rect.h"
 
 #ifndef FACE_H
@@ -12,9 +12,9 @@ public:
 	Face(float x, float y);
 	void Damage(int damage);
 
-	//void Update(float dt );
-	//void Render();
-	//bool IsDead();
+	void Update(float dt );
+	void Render();
+	bool isDead();
 
 	~Face();
 private:
