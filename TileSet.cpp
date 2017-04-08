@@ -1,10 +1,18 @@
+#include "TileSet.h"
+
 #define TILES_NUMBER 1
 
+
+
 TileSet::TileSet(int tileWidth, int tileHeight, string file){
+	//seta as dimensoes e abre o sprite
+	this->tileWidth = tileWidth;
+	this->tileHeight = tileHeight;
+	//tileSet(file);
 
 }
 
-TileSet::Render(unsigned index, float x, float y){
+void TileSet::Render(unsigned index, float x, float y){
 	if(index > TILES_NUMBER-1)
 		exit(1);
 
@@ -12,10 +20,10 @@ TileSet::Render(unsigned index, float x, float y){
 
 }
 
-TileSet::GetTileWidth(){
+int TileSet::GetTileWidth(){
 	return tileWidth;
 }
-TileSet::GetTileHeight(){
+int TileSet::GetTileHeight(){
 	return tileHeight;
 }
 

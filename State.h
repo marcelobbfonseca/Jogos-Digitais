@@ -1,5 +1,7 @@
 #include "Sprite.h"
 #include "GameObject.h"
+#include "TileSet.h"
+#include "TileMap.h"
 
 #ifndef MEUPROJETO_STATE_H
 #define MEUPROJETO_STATE_H
@@ -23,6 +25,10 @@ public:
 	
 private:
 	Sprite bg;
+	
+	TileSet tileSet;
+	TileMap *tileMap;
+
 	bool quitRequested;
 	//atributos trab2
 	std::vector<std::unique_ptr<GameObject>> objectArray;

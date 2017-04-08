@@ -8,10 +8,11 @@ using namespace std;
 #include "SDL2/SDL.h"
 #include "GameObject.h"
 #include "Face.h"
-#include "State.h"
-State::State(){
-	//instanciar sprite
-	//bg = new Sprite();
+#include "State.h" 
+
+State::State() : tileSet(64, 64, "img/tileset.png"){
+
+    tileMap = new TileMap("map/tileMap.txt", &tileSet);
 	quitRequested = false;
 
 }
@@ -42,6 +43,7 @@ void State::Update(){
 
 void State::Render(){
 	bg.Render(0, 0);
+    tileMap->Render(0,0); // 0 because we still dont have a camera
 	//render all objects .for loop
 	for(int i = 0; i < objectArray.size(); i++)
 		objectArray[i]->Render();
@@ -107,6 +109,6 @@ void State::Input(){
 }//end State::Input
 
 State::~State(){
-	//delete bg;
+	delete tileMap;
 	objectArray.clear();
 }
