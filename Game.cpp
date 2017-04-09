@@ -2,6 +2,7 @@
 #include <ctime>
 #include <cstdlib>
 using namespace std;
+#include "Resources.h"
 #include "Game.h"
 #include "error.h"
 Game* Game::instance= nullptr;
@@ -61,6 +62,8 @@ SDL_Renderer* Game::GetRenderer(){
 }
 void Game::Run(){
 	state->LoadAssets();
+
+	//main loop
 	while(state->QuitRequested()==false){
 		/*pt 1 */
 		
@@ -79,6 +82,7 @@ void Game::Run(){
 		SDL_Delay(33); 
 
 	}//end while main loop
+	Resources::ClearImages();
 }
 
 Game::~Game(){

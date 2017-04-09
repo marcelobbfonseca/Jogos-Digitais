@@ -1,5 +1,7 @@
 #include <iostream>
 #include <string>
+#include <fstream> //used to read tileMap file
+
 using namespace std;
 #include "TileSet.h"
 #include "TileMap.h"
@@ -7,13 +9,37 @@ using namespace std;
 
 TileMap::TileMap(string file, TileSet* tileSet){
 	Load(file);
-	SetTileSet(tileSet);
+	//SetTileSet(tileSet);
 
 }
 
-void TileMap::Load(string file){
-	//map/tileMap.txt
+void TileMap::Load(string file){ 
+	int tilesTotal, tileId;
+	FILE *fp;
+
+	fp = fopen(file.c_str(), "r");
+
+	if(fp== NULL){
+		cerr << "Read File fp is null. File cold not be found.";
+		exit(1); 
+	}
+
+	if(fscanf(fp, "%d,%d,%d,", &mapWidth, &mapHeight, &mapDepth))
+		tilesTotal = mapWidth*mapHeight*mapDepth; //calculate total tiles on tilemap
+
+	for(int i=0; i < tilesTotal; i++){ //fill in vector tile matrix 
+		if(fscanf(fp, " %d,", &tileId)){
+			tileMatrix.push_back(tileId-1);
+		}else{
+			cerr << "Error on tileMap read. Reached EOF. tiles missing!";
+			exit(1); 
+		}
+	}
+
+	return;
+
 }
+
 
 void TileMap::SetTileSet(TileSet* tileSet){
 	//troca o tileset em uso

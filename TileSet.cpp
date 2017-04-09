@@ -4,11 +4,13 @@
 
 
 
-TileSet::TileSet(int tileWidth, int tileHeight, string file){
+TileSet::TileSet(int tileWidth, int tileHeight, string file): tileSet(file){
 	//seta as dimensoes e abre o sprite
 	this->tileWidth = tileWidth;
 	this->tileHeight = tileHeight;
-	//tileSet(file);
+	
+
+	//BUILD rows and columns
 
 }
 
@@ -16,8 +18,8 @@ void TileSet::Render(unsigned index, float x, float y){
 	if(index > TILES_NUMBER-1)
 		exit(1);
 
-	//calcule e sete clip desejado
-
+	//calcule tamanho e sete clip desejado. renderize na pos dada
+	//tileSet.SetClip(x,y,64,64);
 }
 
 int TileSet::GetTileWidth(){

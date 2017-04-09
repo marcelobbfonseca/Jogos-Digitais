@@ -1,13 +1,18 @@
 
+#pragma once
+#include "SDL2/SDL.h"
+#include "SDL2/SDL_image.h"
+#include <iostream>
+#include <string>
 #include <unordered_map>
-
+using namespace std;
 class Resources
 {
 public:
 	Resources();
-	static SDL_Texture* GetImage(std::string file);
+	static SDL_Texture* GetImage(string file);
 	static void ClearImages();
 	~Resources();
 private:
-	static std::unordered map<std::string, SDL_Texture*> imageTable;	
+	static unordered_map<string, SDL_Texture*> imageTable;
 };

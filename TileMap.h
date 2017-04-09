@@ -23,7 +23,7 @@ public:
 	int GetDepth();
 	~TileMap();
 private:
-	std::vector<int> leMatrix;
-	TileSet* tileSet;
+	std::vector<int> tileMatrix;
+	Sprite tileSet;
 	int mapWidth, mapHeight, mapDepth;
 };

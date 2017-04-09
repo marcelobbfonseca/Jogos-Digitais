@@ -3,6 +3,8 @@
 using namespace std;
 #include "Sprite.h"
 #include "Game.h"
+#include "Resources.h"
+
 Sprite::Sprite(){
 	texture = nullptr;
 	
@@ -19,19 +21,17 @@ void Sprite::Open(string file){
 	const char *const_file = file.c_str();
 	Game& game = Game::GetInstance();
 	
-	
 	//check if theres an IMG loaded first on texture
-	if(IsOpen())
-		SDL_DestroyTexture(texture);
+	//if(IsOpen())
+	//	SDL_DestroyTexture(texture);//wont be needed whit resources
 
-	texture = IMG_LoadTexture( game.GetRenderer(), const_file); //can return nullptr.treat
+	texture = Resources::GetImage(file);
+	//texture = IMG_LoadTexture( game.GetRenderer(), const_file); //can return nullptr.treat
 	if (texture == nullptr){
 		cout << SDL_GetError() << endl;
-		exit(1);
 	}
 	if(SDL_QueryTexture(texture ,nullptr,nullptr, &width,&height)){ //pass address of 'w' and 'h'
 		cout <<__LINE__<< SDL_GetError() <<  __FILE__<< endl;
-		exit(1);
 	}
 	SetClip(0,0,width,height);
 	
@@ -85,6 +85,7 @@ bool Sprite::IsOpen(){
 }
 
 Sprite::~Sprite(){
+	//resources far´a isso
 	SDL_DestroyTexture(texture);
 }
 
