@@ -14,8 +14,8 @@ class TileMap
 public:
 	TileMap(string file, TileSet* tileSet);
 	void Load(string file);
-	void SetTileSet(TileSet* tileSet);
-	//int& At(int x, int y, int z = 0);
+	void SetTileSet(TileSet *tileSet);
+	int& At(int x, int y, int z = 0);
 	void Render(int cameraX = 0, int cameraY = 0);
 	void RenderLayer(int layer, int cameraX = 0, int cameraY = 0);
 	int Getwidth();
@@ -24,6 +24,6 @@ public:
 	~TileMap();
 private:
 	std::vector<int> tileMatrix;
-	Sprite tileSet;
+	TileSet *tileSet;
 	int mapWidth, mapHeight, mapDepth;
 };

@@ -43,8 +43,9 @@ void State::Update(){
 
 void State::Render(){
 	bg.Render(0, 0);
-    tileMap->Render(0,0); // 0 because we still dont have a camera
-	//render all objects .for loop
+    tileMap->Render(); // 0 because we still dont have a camera
+	
+    //render all objects .for loop
 	for(int i = 0; i < objectArray.size(); i++)
 		objectArray[i]->Render();
 
