@@ -88,7 +88,7 @@ void Game::Run(){
 		Warning(__LINE__, "aloo" ,__FILE__);
 
 		state->Render();
-		Warning(__LINE__, "aloo" ,__FILE__);exit(1);
+		Warning(__LINE__, "aloo" ,__FILE__);
 
 		SDL_RenderPresent(renderer);//update screen
 		

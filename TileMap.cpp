@@ -10,7 +10,7 @@ using namespace std;
 #define SKY 1
 
 
-TileMap::TileMap(string file, TileSet* tileSet){
+TileMap::TileMap(string file, TileSet* tileSet): tileSet(tileSet){
 	Load(file);
 	//SetTileSet(tileSet);
 
@@ -57,7 +57,7 @@ int& TileMap::At(int x, int y, int z /*= 0*/){
 
 void TileMap::RenderLayer(int layer, int cameraX /*= 0*/, int cameraY /*= 0*/){
 	int index;
-	float tile_x, tile_y;
+	float tileX, tileY;
 	Warning(__LINE__, "<<<< aloo >>>>>" ,__FILE__);
 	
 
@@ -67,10 +67,10 @@ void TileMap::RenderLayer(int layer, int cameraX /*= 0*/, int cameraY /*= 0*/){
 			index= At(x, y, layer);
 			cout << " index: " << index << endl;
 			if(0 <= index){
-				tile_x = (float)x*tileSet->GetTileWidth();
-				tile_y = (float)y*tileSet->GetTileHeight();
+				tileX = (float)( x * tileSet->GetTileWidth() );
+				tileY = (float)( y * tileSet->GetTileHeight() );
 				cout << " alo!!antes" << endl;
-				tileSet->Render(At(x, y, layer), tile_x, tile_y); //(index,x,y)
+				tileSet->Render(At(x, y, layer), tileX, tileY); //(index,x,y)
 				cout << " alo!!depois" << endl;
 			}
 		}
