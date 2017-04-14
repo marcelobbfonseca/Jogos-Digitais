@@ -45,3 +45,14 @@ void ErrorExit(int line, string description, string file){ //(line, error descri
 	cerr << "\nLine:"<< line << " " << description << " File: " << file << endl;
 	exit(1);
 }
+
+
+void debugInt(string description, int value, string file, int line ){
+	cout << description << " " << value << " LINE: " << line << " FILE: " << endl;
+}
+void debugFloat(string description, float value, string file, int line  ){
+	cout << description << " " << value << " LINE: " << line << " FILE: " << endl;
+}
+void debugString(string description, string value, string file, int line  ){
+	cout << description << " " << value << " LINE: " << line << " FILE: " << file << endl;
+}

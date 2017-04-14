@@ -41,7 +41,6 @@ Game::Game(string title, int width, int height){
 	srand(time(NULL));
 
 	state = new State();
-	Warning(__LINE__, "<<<<<<<<<<<<< alo >>>>>>>>>>>>>>>>" ,__FILE__);
 		
 
 }
@@ -75,20 +74,16 @@ SDL_Renderer* Game::GetRenderer(){
 void Game::Run(){
 	
 	state->LoadAssets();
-	Warning(__LINE__, "<<<<<<<<<<<<< alo >>>>>>>>>>>>>>>>" ,__FILE__);
 
 	//main loop
 	while(state->QuitRequested()==false){
 		/*pt 1 */
 		
 		/*pt 2 */
-		Warning(__LINE__, "<<<<<<<<<<<<< alo >>>>>>>>>>>>>>>>" ,__FILE__);
 		/*pt 3call update e render */
 		state->Update();
-		Warning(__LINE__, "aloo" ,__FILE__);
 
 		state->Render();
-		Warning(__LINE__, "aloo" ,__FILE__);
 
 		SDL_RenderPresent(renderer);//update screen
 		

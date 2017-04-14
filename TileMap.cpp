@@ -34,8 +34,7 @@ void TileMap::Load(string file){
 		if(fscanf(fp, " %d,", &tileId)){
 			tileMatrix.push_back(tileId-1);
 		}else{
-			cerr << "Error on tileMap read. Reached EOF. tiles missing!";
-			exit(1); 
+			ErrorExit( __LINE__,"Error on tileMap read. Reached EOF. tiles missing!",__FILE__);
 		}
 	}
 
@@ -47,37 +46,30 @@ void TileMap::Load(string file){
 void TileMap::SetTileSet(TileSet *tileSet){
 	this->tileSet = tileSet;
 }
+
 //return reference to pos:x,y,z of tileMatrix
 int& TileMap::At(int x, int y, int z /*= 0*/){
 	int matrixIndex;
 	//formula:[x + (y * W) ) + ( z * W * H )]
 	matrixIndex = (x + (y * mapWidth) + (z * mapWidth * mapHeight) );
-	return ((int&)tileMatrix.at(matrixIndex));
+	return (tileMatrix.at(matrixIndex));
 }
 
 void TileMap::RenderLayer(int layer, int cameraX /*= 0*/, int cameraY /*= 0*/){
-	int index;
 	float tileX, tileY;
-	Warning(__LINE__, "<<<< aloo >>>>>" ,__FILE__);
-	
 
 	//render a layer from the map. tile by tile
 	for(int x = 0; x < mapWidth; x++){
 		for(int y = 0; y < mapHeight; y++){
-			index= At(x, y, layer);
-			cout << " index: " << index << endl;
-			if(0 <= index){
+				
 				tileX = (float)( x * tileSet->GetTileWidth() );
 				tileY = (float)( y * tileSet->GetTileHeight() );
-				cout << " alo!!antes" << endl;
+				
 				tileSet->Render(At(x, y, layer), tileX, tileY); //(index,x,y)
-				cout << " alo!!depois" << endl;
-			}
 		}
 	}
 
 
-	Warning(__LINE__, "<<<< aloo >>>>>" ,__FILE__);
 	//compensar deslocamento da camera
 	//considerar o tamanho de cada tile. usar get width e height de tile
 	return;
@@ -85,10 +77,8 @@ void TileMap::RenderLayer(int layer, int cameraX /*= 0*/, int cameraY /*= 0*/){
 
 void TileMap::Render(int cameraX /*=0*/, int cameraY /*=0*/){
 	//reneriza todas as camadas do mapa
-	RenderLayer(PLAIN,cameraX,cameraY); //plain
-	RenderLayer(SKY,cameraX,cameraY); //sky
-    
-    Warning(__LINE__, "<<<< aloo >>>>>" ,__FILE__);
+	RenderLayer(PLAIN,cameraX,cameraY); //plain 0
+	RenderLayer(SKY,cameraX,cameraY); //sky 1
 
 }
 

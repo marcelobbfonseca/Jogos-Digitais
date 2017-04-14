@@ -16,23 +16,25 @@ TileSet::TileSet(int tileWidth, int tileHeight, string file): tileSet(file){
 	rows = tileSet.GetHeight()/tileHeight;
 }
 
-void TileSet::Render(unsigned index, float x, float y){
+void TileSet::Render(int index, float x, float y){
 	int newX, newY, tileNum;
 	tileNum = (rows * columns) - 1;
-	Warning(__LINE__, "aloo" ,__FILE__);
+	
+	debugInt("index:",index,__FILE__,__LINE__);
+	debugInt("TILENUM:",tileNum,__FILE__,__LINE__);
 
-	if(index > tileNum)
-		ErrorExit(__LINE__, "Index nao pode ser maior que o numero de tiles-1 " ,__FILE__);
+	if((index > tileNum) or (index<=0)){
+		cout <<"<<< VOLTOU!! >>>" << endl;
+		return;
+	}else{
+		//calcule tamanho e sete clip desejado. renderize na pos dada
+		newX = index % columns;
+		newY = index / columns;
 
-	//calcule tamanho e sete clip desejado. renderize na pos dada
-	//tileSet.SetClip(x,y,64,64);
-	newX = index % columns;
-	newY = index / columns;
-
-	tileSet.SetClip(newX,newY,tileWidth,tileHeight);
-	tileSet.Render(x,y);
-	Warning(__LINE__, "aloo" ,__FILE__);
-
+		tileSet.SetClip(newX,newY,tileWidth,tileHeight);
+		tileSet.Render(x,y);
+		cout <<"<<< RENDERIZOU!! >>>" << endl;
+	}
 }
 
 int TileSet::GetTileWidth(){

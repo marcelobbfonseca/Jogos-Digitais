@@ -42,10 +42,8 @@ void State::Update(){
 
 void State::Render(){
 	bg.Render(0, 0);
-    Warning(__LINE__, " <<<< aloo! >>>>> " ,__FILE__);
 
     tileMap->Render(); // 0 because we still dont have a camera
-    Warning(__LINE__, "<<<< aloo >>>>>" ,__FILE__);
 	
     //render all objects .for loop
 	for(int i = 0; i < objectArray.size(); i++)

@@ -11,7 +11,7 @@ class TileSet
 {
 public:
 	TileSet(int tileWidth, int tileHeight, string file);
-	void Render(unsigned index, float x, float y);
+	void Render(int index, float x, float y);
 	int GetTileWidth();
 	int GetTileHeight();
 	~TileSet();
