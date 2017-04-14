@@ -2,11 +2,7 @@
 #define ERROR_H
 
 using namespace std;
-
-
-void printError(int line, string description, string file){
-	cout << "\nLine:"<< line << " " << description << " File:" << file << endl;
-	exit(1);
-}
+void Warning(int line, string description, string file);
+void ErrorExit(int line, string description, string file);
 
 #endif

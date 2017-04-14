@@ -4,6 +4,7 @@
 
 using namespace std;
 #include "TileMap.h"
+#include "error.h"
 
 #define PLAIN 0
 #define SKY 1
@@ -57,21 +58,26 @@ int& TileMap::At(int x, int y, int z /*= 0*/){
 void TileMap::RenderLayer(int layer, int cameraX /*= 0*/, int cameraY /*= 0*/){
 	int index;
 	float tile_x, tile_y;
+	Warning(__LINE__, "<<<< aloo >>>>>" ,__FILE__);
+	
 
 	//render a layer from the map. tile by tile
 	for(int x = 0; x < mapWidth; x++){
 		for(int y = 0; y < mapHeight; y++){
 			index= At(x, y, layer);
+			cout << " index: " << index << endl;
 			if(0 <= index){
 				tile_x = (float)x*tileSet->GetTileWidth();
 				tile_y = (float)y*tileSet->GetTileHeight();
+				cout << " alo!!antes" << endl;
 				tileSet->Render(At(x, y, layer), tile_x, tile_y); //(index,x,y)
+				cout << " alo!!depois" << endl;
 			}
 		}
 	}
 
 
-
+	Warning(__LINE__, "<<<< aloo >>>>>" ,__FILE__);
 	//compensar deslocamento da camera
 	//considerar o tamanho de cada tile. usar get width e height de tile
 	return;
@@ -81,6 +87,9 @@ void TileMap::Render(int cameraX /*=0*/, int cameraY /*=0*/){
 	//reneriza todas as camadas do mapa
 	RenderLayer(PLAIN,cameraX,cameraY); //plain
 	RenderLayer(SKY,cameraX,cameraY); //sky
+    
+    Warning(__LINE__, "<<<< aloo >>>>>" ,__FILE__);
+
 }
 
 TileMap::~TileMap(){

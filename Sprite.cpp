@@ -21,9 +21,6 @@ void Sprite::Open(string file){
 	const char *const_file = file.c_str();
 	Game& game = Game::GetInstance();
 	
-	//check if theres an IMG loaded first on texture
-	//if(IsOpen())
-	//	SDL_DestroyTexture(texture);//wont be needed whit resources
 
 	texture = Resources::GetImage(file);
 	//texture = IMG_LoadTexture( game.GetRenderer(), const_file); //can return nullptr.treat
@@ -86,6 +83,6 @@ bool Sprite::IsOpen(){
 
 Sprite::~Sprite(){
 	//resources far´a isso
-	SDL_DestroyTexture(texture);
+	//SDL_DestroyTexture(texture);
 }
 

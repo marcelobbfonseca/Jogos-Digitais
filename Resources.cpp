@@ -12,23 +12,25 @@ unordered_map<string, SDL_Texture*> Resources::imageTable;
 
 
 SDL_Texture* Resources::GetImage(string file){
+	//header: local variables declarations	
 	const char *const_file = file.c_str();
 	Game& game = Game::GetInstance();
-
 	SDL_Texture* texture;
 	unordered_map< string, SDL_Texture* >::const_iterator got = imageTable.find(file);
 	
-	
-	//checa se a img existe. Se sim: retorne o ponteiro  |Se nao:Carrega e insere o par (path,ptr) na tabela
+	//chehck if img exist. yes?: return pointer  | no?: load and insert pair (path,ptr) on table
   	if ( got == imageTable.end() ){
     	//not found
     	texture = IMG_LoadTexture( game.GetRenderer(), const_file);
-  		if (texture == nullptr)
-			//cout << SDL_GetError() << endl;
+  		if (texture == nullptr){
+			cout << SDL_GetError() << endl;
+			exit(1);
+  		}
+
 		imageTable.emplace(file, texture);
 	}
   	else{
-    	//Exist! got->first and got->second
+    	//Got it! got->first and got->second
     	texture = got->second;
   	}
 

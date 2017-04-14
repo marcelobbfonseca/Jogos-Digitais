@@ -9,7 +9,7 @@ using namespace std;
 #include "GameObject.h"
 #include "Face.h"
 #include "State.h" 
-
+#include "error.h"
 State::State() : tileSet(64, 64, "img/tileset.png"){
 
     tileMap = new TileMap("map/tileMap.txt", &tileSet);
@@ -23,7 +23,10 @@ void State::LoadAssets(){
 }
 
 void State::Update(){
+        
  	Input();
+    Warning(__LINE__, "oioi" ,__FILE__);
+
  	//checking if any face has died
 	for(int i = 0; i < objectArray.size(); i++){
 
@@ -32,18 +35,17 @@ void State::Update(){
 			objectArray.erase(objectArray.begin()+i); // if fails try using: .at(i)
 		}
 
-
  	}//end for objArrayLoop
-
-
-
-
+    Warning(__LINE__, "oioi" ,__FILE__);
 
 }
 
 void State::Render(){
 	bg.Render(0, 0);
+    Warning(__LINE__, " <<<< aloo! >>>>> " ,__FILE__);
+
     tileMap->Render(); // 0 because we still dont have a camera
+    Warning(__LINE__, "<<<< aloo >>>>>" ,__FILE__);
 	
     //render all objects .for loop
 	for(int i = 0; i < objectArray.size(); i++)
@@ -63,6 +65,7 @@ void State::Input(){
 
     SDL_Event event;
     int mouseX, mouseY;
+    Warning(__LINE__, "oioi" ,__FILE__);
 
     // Obtenha as coordenadas do mouse
     SDL_GetMouseState(&mouseX, &mouseY);
@@ -81,12 +84,6 @@ void State::Input(){
             for(int i = objectArray.size() - 1; i >= 0; --i) {
                 // Obtem o ponteiro e casta pra Face.
                 Face* face = (Face*) objectArray[i].get();
-                // WARNING: Desencapsular o ponteiro é algo que devemos evitar ao máximo.
-                // O propósito do unique_ptr é manter apenas uma cópia daquele ponteiro,
-                // ao usar get(), violamos esse princípio e estamos menos seguros.
-                // Esse código, assim como a classe Face, é provisório. Futuramente, para
-                // chamar funções de GameObjects, usaremos objectArray[i]->função() direto.
-
                 //if(face->box.IsInside((float)mouseX, (float)mouseY)) {
                     // Apply damage
                     face->Damage(rand() % 10 + 10);
@@ -95,6 +92,7 @@ void State::Input(){
                 //}
             }
         }
+
         if( event.type == SDL_KEYDOWN ) {
             // Se a tecla for ESC, setar a flag de quit
             if( event.key.keysym.sym == SDLK_ESCAPE ) {
