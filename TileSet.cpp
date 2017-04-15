@@ -29,19 +29,10 @@ void TileSet::Render(int index, float x, float y){
 		newX = index % columns;
 		newY = index / columns;
 
-		//tileSet.SetClip(newX,newY,tileWidth,tileHeight);
-		//tileSet.Render(x,y);
-		SDL_Rect spriteNew;
-		spriteNew.x= newY*tileWidth;
-		spriteNew.y= newX*tileHeight;
-		spriteNew.w= tileWidth;
-		spriteNew.h= tileHeight;
-		SDL_Rect pos;
-		pos.x=x;
-		pos.y=y;
-		pos.w= tileWidth;
-		pos.h= tileHeight;
-		SDL_RenderCopy(Game::GetInstance().GetRenderer(), tileSet.GetTexture(),&spriteNew, &pos);
+		tileSet.SetClip(newX*tileHeight,newY*tileWidth,tileWidth,tileHeight);
+		tileSet.Render(x,y);
+
+
 	}
 }
 
