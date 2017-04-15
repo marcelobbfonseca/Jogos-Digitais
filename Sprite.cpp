@@ -86,3 +86,6 @@ Sprite::~Sprite(){
 	//SDL_DestroyTexture(texture);
 }
 
+SDL_Texture* Sprite::GetTexture(){
+	return texture;
+}

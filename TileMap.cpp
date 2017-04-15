@@ -47,12 +47,11 @@ void TileMap::SetTileSet(TileSet *tileSet){
 	this->tileSet = tileSet;
 }
 
-//return reference to pos:x,y,z of tileMatrix
 int& TileMap::At(int x, int y, int z /*= 0*/){
 	int matrixIndex;
 	//formula:[x + (y * W) ) + ( z * W * H )]
 	matrixIndex = (x + (y * mapWidth) + (z * mapWidth * mapHeight) );
-	return (tileMatrix.at(matrixIndex));
+	return (tileMatrix.at(matrixIndex)); //return reference to pos:x,y,z of tileMatrix
 }
 
 void TileMap::RenderLayer(int layer, int cameraX /*= 0*/, int cameraY /*= 0*/){
@@ -70,8 +69,7 @@ void TileMap::RenderLayer(int layer, int cameraX /*= 0*/, int cameraY /*= 0*/){
 	}
 
 
-	//compensar deslocamento da camera
-	//considerar o tamanho de cada tile. usar get width e height de tile
+	//futuramente: compensar deslocamento da camera
 	return;
 }
 

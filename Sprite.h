@@ -19,6 +19,7 @@ public:
 	int GetWidth();
 	int GetHeight();
 	bool IsOpen();
+	SDL_Texture* GetTexture();
 	~Sprite();
 private:
 	SDL_Texture* texture;
