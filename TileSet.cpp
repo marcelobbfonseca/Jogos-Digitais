@@ -21,8 +21,6 @@ void TileSet::Render(int index, float x, float y){
 	int newX, newY, tileNum;
 	tileNum = (rows * columns) - 1;
 
-	debugInt("index:",index,__FILE__,__LINE__);
-	debugInt("TILENUM:",tileNum,__FILE__,__LINE__);
 
 	if((index > tileNum) or (index<=0)){
 		return;

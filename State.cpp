@@ -25,7 +25,6 @@ void State::LoadAssets(){
 void State::Update(){
         
  	Input();
-    Warning(__LINE__, "oioi" ,__FILE__);
 
  	//checking if any face has died
 	for(int i = 0; i < objectArray.size(); i++){
@@ -36,7 +35,6 @@ void State::Update(){
 		}
 
  	}//end for objArrayLoop
-    Warning(__LINE__, "oioi" ,__FILE__);
 
 }
 
@@ -63,7 +61,6 @@ void State::Input(){
 
     SDL_Event event;
     int mouseX, mouseY;
-    Warning(__LINE__, "oioi" ,__FILE__);
 
     // Obtenha as coordenadas do mouse
     SDL_GetMouseState(&mouseX, &mouseY);
