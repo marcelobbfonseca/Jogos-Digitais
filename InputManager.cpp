@@ -2,7 +2,7 @@
 #include "SDL2/SDL.h"
 #include "error.h"
 #define MOUSE_ARRAY_LENGHT 6
-
+#define KEY_LENGHT 416
 
 
 InputManager::InputManager(){
@@ -15,6 +15,10 @@ InputManager::InputManager(){
 	for (int i = 0; i < MOUSE_ARRAY_LENGHT; ++i){
 		mouseState[i] = false;
 		mouseUpdate[i] = 0;
+	}
+	for (int i = 0; i < KEY_LENGHT; ++i){
+		keyState[i]=false;
+		keyUpdate[i]=0;
 	}
 
 }
@@ -39,16 +43,16 @@ void InputManager::Update(){
 	 			break;
 	 	
 	 		case SDL_MOUSEBUTTONUP:
-	 			mouseState[event.button.button] = true;
-	 			mouseUpdate[event.button.button] =updateCounter;
+	 			mouseState[event.button.button] = false;
 	 			break;
 
 	 		case SDL_KEYDOWN:
-
+				keyState[event.key.keysym.sym] = true;
+				keyUpdate[event.key.keysym.sym] = updateCounter;
 	 			break;
 
 	 		case SDL_KEYUP:
-
+				keyState[event.key.keysym.sym] = false;
 	 			break;
 
 	 		default:break;
@@ -68,10 +72,15 @@ bool InputManager::MousePress(int button){return false;}
 bool InputManager::MouseRelease(int button){return false;}
 bool InputManager::isMouseDown(int button){return false;}
 	
-int InputManager::GetMouseX(){return 0;}
-int InputManager::GetMouseY(){return 0;}
-
-bool InputManager::QuitRequested(){return false;}
+int InputManager::GetMouseX(){
+	return mouseX;
+}
+int InputManager::GetMouseY(){
+	return mouseY;
+}
+bool InputManager::QuitRequested(){
+	return quitRequested;
+}
 
 InputManager& InputManager::GetInstance(){
 	static InputManager i;
