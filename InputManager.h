@@ -1,13 +1,13 @@
 #pragma once
 
 #include <iostream>
-#include <memory>
+#include <unordered_map>
 using namespace std;
 
-class inputManager
+class InputManager
 {
 public:
-	inputManager();
+	InputManager();
 	
 	void Update();
 
@@ -24,9 +24,9 @@ public:
 
 	bool QuitRequested();
 
-	static inputManager& GetInstance();
+	static InputManager& GetInstance(); //singleton
 
-	~inputManager();
+	~InputManager();
 private:
 	bool mouseState[6];
 	int mouseUpdate[6];

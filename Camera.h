@@ -1,13 +1,17 @@
+#pragma once
+
+#include "GameObject.h"
+
 class Camera
 {
 public:
 	Camera();
-	void Follow(GameObject* newFocus);
-	void Unfollow();
-	void Update(float dt);
+	static void Follow(GameObject* newFocus);
+	static void Unfollow();
+	static void Update(float dt);
 	~Camera();
 private:
-	Vec2 pos;
-	Vec2 speed;
-	GameObject* focus;
+	static Vec2 pos;
+	static Vec2 speed;
+	static GameObject* focus;
 };

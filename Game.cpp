@@ -94,7 +94,7 @@ void Game::Run(){
 		SDL_Delay(33); 
 		
 	}//end while main loop
-	//Resources::ClearImages();
+	Resources::ClearImages();
 }
 
 Game::~Game(){

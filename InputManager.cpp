@@ -4,7 +4,7 @@ InputManager::InputManager(){
 
 }
 
-void InputManager::Update();
+void InputManager::Update(){}
 
 bool InputManager::Keypress(int key){return false;}
 bool InputManager::KeyRelease(int key){return false;}
@@ -19,7 +19,10 @@ int InputManager::GetMouseY(){return 0;}
 
 bool InputManager::QuitRequested(){return false;}
 
-static inputManager& InputManager::GetInstance(){}
+InputManager& InputManager::GetInstance(){
+	static InputManager i;
+	return i;
+}
 
 InputManager::~InputManager(){
 	

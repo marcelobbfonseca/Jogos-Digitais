@@ -30,7 +30,6 @@ int main(int argc, char const *argv[]){
 	height = 600;
 	
 	Game game(title,width,height);
-	Warning(__LINE__, "alo" ,__FILE__);	
 	game.Run();
 
 	return 0;
