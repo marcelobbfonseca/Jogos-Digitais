@@ -5,7 +5,6 @@
 using namespace std;
 
 #include "SDL2/SDL.h"
-#include "SDL2/SDL.h"
 #include "GameObject.h"
 #include "Face.h"
 #include "State.h" 
@@ -61,6 +60,7 @@ void State::Input(){
 
     SDL_Event event;
     int mouseX, mouseY;
+
 
     // Obtenha as coordenadas do mouse
     SDL_GetMouseState(&mouseX, &mouseY);
