@@ -10,6 +10,8 @@ using namespace std;
 Game* Game::instance= nullptr;
 
 Game::Game(string title, int width, int height) : inputManager(InputManager::GetInstance()){
+	
+
 
 	if(nullptr != instance ){
 		ErrorExit(__LINE__, "Exista uma segunda instancia do jogo! " ,__FILE__);
@@ -42,7 +44,8 @@ Game::Game(string title, int width, int height) : inputManager(InputManager::Get
 	srand(time(NULL));
 
 	state = new State();
-		
+	dt= 0.0;
+	frameStart = 0;
 
 }
 
@@ -64,10 +67,9 @@ void Game::Run(){
 
 	//main loop
 	while(state->QuitRequested()==false){
-		/*pt 1 */
-		
-		/*pt 2 */
-		/*pt 3call update e render */
+
+		CalculateDeltaTime();
+
 		inputManager.Update();
 		state->Update();
 
@@ -83,6 +85,19 @@ void Game::Run(){
 		
 	}//end while main loop
 	Resources::ClearImages();
+}
+
+
+void Game::CalculateDeltaTime(){
+	u_int32_t newTick;
+
+	newTick = SDL_GetTicks();
+	dt=(frameStart-newTick)/1000;
+	dt = (float) dt;//converted to seconds
+	frameStart= newTick;
+}
+float Game::GetDeltaTime(){
+	return dt;
 }
 
 Game::~Game(){
