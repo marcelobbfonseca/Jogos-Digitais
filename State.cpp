@@ -9,7 +9,8 @@ using namespace std;
 #include "Face.h"
 #include "State.h" 
 #include "error.h"
-State::State() : tileSet(64, 64, "img/tileset.png"){
+
+State::State() : tileSet(64, 64, "img/tileset.png"), inputManager(InputManager::GetInstance()){
 
     tileMap = new TileMap("map/tileMap.txt", &tileSet);
 	quitRequested = false;
@@ -22,15 +23,37 @@ void State::LoadAssets(){
 }
 
 void State::Update(){
-        
- 	Input();
+    int mouseX, mouseY;
+ 	//Input();
+    //check quit for press ESC
+    if(SDL_QuitRequested() or inputManager.Keypress(ESCAPE_KEY))
+        quitRequested=true;
 
+    //if space key is pressed create face
+    if(inputManager.IsKeyDown(ESPACE_KEY)){
+        SDL_GetMouseState(&mouseX, &mouseY);
+        AddObject((float)mouseX, (float)mouseY);
+    }
+    if(inputManager.MousePress(SDL_MOUSEBUTTONDOWN)) {
+        cout<< "AI! AI AI! "<< endl;
+        for(int i = objectArray.size() - 1; i >= 0; --i) {
+            // Obtem o ponteiro e casta pra Face.
+            Face* face = (Face*) objectArray[i].get();
+            //if(face->box.IsInside((float)mouseX, (float)mouseY)) {
+                // Apply damage
+                face->Damage(rand() % 10 + 10);
+                // Sai do loop (só queremos acertar um)
+                break;
+            //}
+        }
+
+        
+    }
  	//checking if any face has died
 	for(int i = 0; i < objectArray.size(); i++){
 
 		if(objectArray[i]->isDead()){
-
-			objectArray.erase(objectArray.begin()+i); // if fails try using: .at(i)
+			objectArray.erase(objectArray.begin()+i);
 		}
 
  	}//end for objArrayLoop

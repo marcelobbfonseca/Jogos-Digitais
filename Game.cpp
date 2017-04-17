@@ -5,9 +5,11 @@ using namespace std;
 #include "Resources.h"
 #include "Game.h"
 #include "error.h"
+#include "InputManager.h"
+
 Game* Game::instance= nullptr;
 
-Game::Game(string title, int width, int height){
+Game::Game(string title, int width, int height) : inputManager(InputManager::GetInstance()){
 
 	if(nullptr != instance ){
 		ErrorExit(__LINE__, "Exista uma segunda instancia do jogo! " ,__FILE__);
@@ -25,7 +27,6 @@ Game::Game(string title, int width, int height){
 	if(0 == (img_init & IMG_INIT_PNG) )ErrorExit(__LINE__, SDL_GetError() ,__FILE__);
 	if(0 == (img_init & IMG_INIT_TIF ))ErrorExit(__LINE__, SDL_GetError() ,__FILE__);
 
-	//initialize();
 	window = SDL_CreateWindow(title.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width,height ,0);
 	
 	if(window != nullptr){
@@ -43,20 +44,6 @@ Game::Game(string title, int width, int height){
 	state = new State();
 		
 
-}
-
-void Game::initialize(){
-	/*unsigned int img_init;
-
-	if(SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO | SDL_INIT_TIMER))
-		ErrorExit(__LINE__, SDL_GetError() ,__FILE__);
-
-	img_init = IMG_Init(IMG_INIT_JPG | IMG_INIT_PNG | IMG_INIT_TIF);
-
-	if(img_init==false)
-		ErrorExit(__LINE__, SDL_GetError() ,__FILE__);
-	
-	return;*/
 }
 
 Game& Game::GetInstance(){
@@ -81,6 +68,7 @@ void Game::Run(){
 		
 		/*pt 2 */
 		/*pt 3call update e render */
+		inputManager.Update();
 		state->Update();
 
 		state->Render();

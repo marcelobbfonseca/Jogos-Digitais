@@ -23,6 +23,7 @@ InputManager::InputManager(){
 
 }
 
+//read mouse and keyboard input
 void InputManager::Update(){
 	SDL_Event event;
 	++updateCounter;
@@ -64,13 +65,48 @@ void InputManager::Update(){
 
 }
 
-bool InputManager::Keypress(int key){return false;}
-bool InputManager::KeyRelease(int key){return false;}
-bool InputManager::IsKeyDown(int key){return false;}
+bool InputManager::Keypress(int key){
+	if( keyUpdate[key] == updateCounter )
+		return true;
+	else
+		return false;
+}
+
+bool InputManager::KeyRelease(int key){
+	if( keyUpdate[key] != updateCounter )
+		return true;
+	else
+		return false;
+}
+
+bool InputManager::IsKeyDown(int key){
+	if(keyState[key] == true)
+		return true;
+	else
+		return false;
+}
 	
-bool InputManager::MousePress(int button){return false;}
-bool InputManager::MouseRelease(int button){return false;}
-bool InputManager::isMouseDown(int button){return false;}
+bool InputManager::MousePress(int button){
+	//cout << "button: " << button << " updateCounter: "<<updateCounter<<endl; 
+	if (mouseState[button] and mouseUpdate[button]== updateCounter)
+		return true;
+	else
+		return false; 
+}
+
+bool InputManager::MouseRelease(int button){
+	if ((mouseState[button]==false) and mouseUpdate[button]+1 == updateCounter)
+		return false;
+	else
+		return true;
+}
+
+bool InputManager::isMouseDown(int button){
+	if(mouseState[button] == true)
+		return true;
+	else
+		return false;
+}
 	
 int InputManager::GetMouseX(){
 	return mouseX;

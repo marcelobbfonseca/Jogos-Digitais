@@ -2,6 +2,7 @@
 #include "GameObject.h"
 #include "TileSet.h"
 #include "TileMap.h"
+#include "InputManager.h"
 
 #ifndef MEUPROJETO_STATE_H
 #define MEUPROJETO_STATE_H
@@ -32,6 +33,7 @@ private:
 	bool quitRequested;
 	//atributos trab2
 	std::vector<std::unique_ptr<GameObject>> objectArray;
+	InputManager &inputManager;
 
 };
 

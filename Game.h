@@ -17,13 +17,13 @@ public:
 	State& GetState();
 	
 	static Game& GetInstance();
-	void initialize();
 private:
 
 	static Game* instance;
 	SDL_Window* window;
 	SDL_Renderer* renderer;
 	State* state;
+	InputManager &inputManager;
 
 };
 
