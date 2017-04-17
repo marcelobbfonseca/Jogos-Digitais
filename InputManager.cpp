@@ -65,7 +65,7 @@ void InputManager::Update(){
 
 }
 
-bool InputManager::Keypress(int key){
+bool InputManager::KeyPress(int key){
 	if( keyUpdate[key] == updateCounter )
 		return true;
 	else

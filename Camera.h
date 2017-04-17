@@ -1,6 +1,8 @@
 #pragma once
 
 #include "GameObject.h"
+#include "Vec2.h"
+#define CAMERA_MOVE_SPEED 10;
 
 class Camera
 {
@@ -10,8 +12,9 @@ public:
 	static void Unfollow();
 	static void Update(float dt);
 	~Camera();
-private:
 	static Vec2 pos;
 	static Vec2 speed;
+
+private:
 	static GameObject* focus;
 };

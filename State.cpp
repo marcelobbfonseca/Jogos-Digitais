@@ -3,11 +3,12 @@
 #include <vector>
 #include <memory>
 using namespace std;
-
+#include "Game.h"
 #include "SDL2/SDL.h"
 #include "GameObject.h"
 #include "Face.h"
 #include "State.h" 
+#include "Camera.h"
 #include "error.h"
 
 State::State() : tileSet(64, 64, "img/tileset.png"), inputManager(InputManager::GetInstance()){
@@ -26,7 +27,7 @@ void State::Update(){
     int mouseX, mouseY;
  	//Input();
     //check quit for press ESC
-    if(SDL_QuitRequested() or inputManager.Keypress(ESCAPE_KEY))
+    if(SDL_QuitRequested() or inputManager.KeyPress(ESCAPE_KEY))
         quitRequested=true;
 
     //if space key is pressed create face
@@ -57,13 +58,13 @@ void State::Update(){
 		}
 
  	}//end for objArrayLoop
-
+    //Camera::Update(Game::GetInstance().GetDeltaTime());
 }
 
 void State::Render(){
 	bg.Render(0, 0);
 
-    tileMap->Render(); // 0 because we still dont have a camera
+    tileMap->Render(Camera::pos.x, Camera::pos.y); // 0 because we still dont have a camera
 	
     //render all objects .for loop
 	for(int i = 0; i < objectArray.size(); i++)

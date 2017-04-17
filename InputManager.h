@@ -26,7 +26,7 @@ public:
 	
 	void Update();
 
-	bool Keypress(int key);
+	bool KeyPress(int key);
 	bool KeyRelease(int key);
 	bool IsKeyDown(int key);
 	
