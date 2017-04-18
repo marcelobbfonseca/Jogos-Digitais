@@ -47,9 +47,9 @@ void TileMap::SetTileSet(TileSet *tileSet){
 	this->tileSet = tileSet;
 }
 
+//formula:[x + (y * W) ) + ( z * W * H )]
 int& TileMap::At(int x, int y, int z /*= 0*/){
 	int matrixIndex;
-	//formula:[x + (y * W) ) + ( z * W * H )]
 	matrixIndex = (x + (y * mapWidth) + (z * mapWidth * mapHeight) );
 	return (tileMatrix.at(matrixIndex)); //return reference to pos:x,y,z of tileMatrix
 }
@@ -61,8 +61,8 @@ void TileMap::RenderLayer(int layer, int cameraX /*= 0*/, int cameraY /*= 0*/){
 	for(int x = 0; x < mapWidth; x++){
 		for(int y = 0; y < mapHeight; y++){
 				
-				tileX = (float)( x * tileSet->GetTileWidth() );
-				tileY = (float)( y * tileSet->GetTileHeight() );
+				tileX = (float)( (x+cameraX) * tileSet->GetTileWidth() );
+				tileY = (float)( (y+cameraY) * tileSet->GetTileHeight() );
 				
 				tileSet->Render(At(x, y, layer), tileX, tileY); //(index,x,y)
 		}

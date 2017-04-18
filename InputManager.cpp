@@ -15,10 +15,7 @@ InputManager::InputManager(){
 		mouseState[i] = false;
 		mouseUpdate[i] = 0;
 	}
-	//for (int i = 0; i < KEY_LENGHT; ++i){
-	//	keyState[i]=false;
-	//	keyUpdate[i]=0;
-	//}
+
 
 }
 
@@ -65,7 +62,6 @@ void InputManager::Update(){
 }
 
 bool InputManager::KeyPress(int key){
-	debugInt("VALOR KEY: ", key, __FILE__, __LINE__ );
 
 	if( keyUpdate[key] == updateCounter )
 		return true;
@@ -90,7 +86,6 @@ bool InputManager::IsKeyDown(int key){
 }
 	
 bool InputManager::MousePress(int button){
-	//cout << "button: " << button << " updateCounter: "<<updateCounter<<endl; 
 	if (mouseState[button] and mouseUpdate[button]== updateCounter)
 		return true;
 	else

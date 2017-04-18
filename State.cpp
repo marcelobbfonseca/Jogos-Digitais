@@ -25,8 +25,6 @@ void State::LoadAssets(){
 
 void State::Update(){
     int mouseX, mouseY;
- 	//Input();
-    //check quit for press ESC
     if(SDL_QuitRequested() or inputManager.KeyPress(ESCAPE_KEY))
         quitRequested=true;
 
@@ -36,16 +34,10 @@ void State::Update(){
         AddObject((float)mouseX, (float)mouseY);
     }
     if(inputManager.isMouseDown(SDL_BUTTON_LEFT)) {
-        cout<< "AI! AI AI! "<< endl;
         for(int i = objectArray.size() - 1; i >= 0; --i) {
-            // Obtem o ponteiro e casta pra Face.
             Face* face = (Face*) objectArray[i].get();
-            //if(face->box.IsInside((float)mouseX, (float)mouseY)) {
-                // Apply damage
                 face->Damage(rand() % 10 + 10);
-                // Sai do loop (só queremos acertar um)
                 break;
-            //}
         }
 
         
@@ -64,7 +56,7 @@ void State::Update(){
 
 void State::Render(){
 	bg.Render(0, 0);
-
+    cout << "(pos.x, pos.y): " << Camera::pos.x << ", " << Camera::pos.y << endl;
     tileMap->Render(Camera::pos.x, Camera::pos.y); // 0 because we still dont have a camera
 	
     //render all objects .for loop
