@@ -2,7 +2,10 @@
 
 #include <iostream>
 #include <unordered_map>
-using namespace std;
+#include "SDL2/SDL.h"
+#include "SDL2/SDL_image.h"
+#include "SDL2/SDL_mixer.h"
+#include "SDL2/SDL_ttf.h"
 
 
 #define LEFT_ARROW_KEY SDLK_LEFT
@@ -49,8 +52,8 @@ private:
 	bool quitRequested;
 	int updateCounter;
 	int mouseX, mouseY;
-	//std::unordered_map<int, bool> KeyState;
-	//std::unordered_map<int, int> KeyUpdate;
-	bool keyState[416];
-	int keyUpdate[416];
+	std::unordered_map<int, bool> keyState;
+	std::unordered_map<int, int> keyUpdate;
+	//bool keyState[416];
+	//int keyUpdate[416];
 };

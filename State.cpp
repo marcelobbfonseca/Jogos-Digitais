@@ -31,11 +31,11 @@ void State::Update(){
         quitRequested=true;
 
     //if space key is pressed create face
-    if(inputManager.IsKeyDown(ESPACE_KEY)){
+    if(inputManager.KeyPress(ESPACE_KEY)){
         SDL_GetMouseState(&mouseX, &mouseY);
         AddObject((float)mouseX, (float)mouseY);
     }
-    if(inputManager.MousePress(SDL_MOUSEBUTTONDOWN)) {
+    if(inputManager.isMouseDown(SDL_BUTTON_LEFT)) {
         cout<< "AI! AI AI! "<< endl;
         for(int i = objectArray.size() - 1; i >= 0; --i) {
             // Obtem o ponteiro e casta pra Face.
@@ -58,7 +58,8 @@ void State::Update(){
 		}
 
  	}//end for objArrayLoop
-    //Camera::Update(Game::GetInstance().GetDeltaTime());
+    
+    Camera::Update(Game::GetInstance().GetDeltaTime());
 }
 
 void State::Render(){

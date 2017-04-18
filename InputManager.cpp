@@ -1,9 +1,8 @@
 #include "InputManager.h"
-#include "SDL2/SDL.h"
 #include "error.h"
 #define MOUSE_ARRAY_LENGHT 6
 #define KEY_LENGHT 416
-
+using namespace std;
 
 InputManager::InputManager(){
 
@@ -16,10 +15,10 @@ InputManager::InputManager(){
 		mouseState[i] = false;
 		mouseUpdate[i] = 0;
 	}
-	for (int i = 0; i < KEY_LENGHT; ++i){
-		keyState[i]=false;
-		keyUpdate[i]=0;
-	}
+	//for (int i = 0; i < KEY_LENGHT; ++i){
+	//	keyState[i]=false;
+	//	keyUpdate[i]=0;
+	//}
 
 }
 
@@ -31,7 +30,7 @@ void InputManager::Update(){
     while (SDL_PollEvent(&event)) {
 	 	
 	 	if(event.key.repeat)
-	 		continue;
+	 		break;
 
 	 	switch(event.type){
 	 		case SDL_QUIT:	
@@ -66,6 +65,8 @@ void InputManager::Update(){
 }
 
 bool InputManager::KeyPress(int key){
+	debugInt("VALOR KEY: ", key, __FILE__, __LINE__ );
+
 	if( keyUpdate[key] == updateCounter )
 		return true;
 	else
@@ -73,14 +74,16 @@ bool InputManager::KeyPress(int key){
 }
 
 bool InputManager::KeyRelease(int key){
-	if( keyUpdate[key] != updateCounter )
+
+	if( keyUpdate.at(key) == updateCounter )
 		return true;
 	else
 		return false;
 }
 
 bool InputManager::IsKeyDown(int key){
-	if(keyState[key] == true)
+
+	if(keyUpdate.at(key) != updateCounter)
 		return true;
 	else
 		return false;
@@ -92,6 +95,8 @@ bool InputManager::MousePress(int button){
 		return true;
 	else
 		return false; 
+	
+	
 }
 
 bool InputManager::MouseRelease(int button){

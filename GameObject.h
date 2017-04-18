@@ -1,3 +1,4 @@
+#pragma once
 
 #include "SDL2/SDL.h"
 #include "Rect.h"
@@ -13,7 +14,7 @@ public:
 	virtual void Render()=0;
 	virtual bool isDead()=0;
 	~GameObject();
-	Rect box; //dimensao
+	SDL_Rect box; //dimensao
 	
 };
 
