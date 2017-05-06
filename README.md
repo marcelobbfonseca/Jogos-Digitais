@@ -1,5 +1,5 @@
 # Jogos-Digitais
-Desenvolvimento de um jogo em C++ para fins didaticos
+Materia de Desenvolvimento de um jogo em C++ para fins didaticos da UnB
 
 
 

@@ -46,13 +46,11 @@ Vec2 Vec2::Rotate(float angle) const{
 	return Vec2(xNew, yNew);
 }
 
-float Vec2::InclineVet() const{
-	return atan2(y, x);
+float Vec2::InclineVet() const{ //in radians
+	return (float)atan2(y, x);
 }
+
 
 Vec2::~Vec2(){
 
 }
-    //a partir dos novos pontos dados em coordenadasDestino. Forma-se o triangulo retangulo entre os dois pontos no eixo (X, Y)   
-    //Pega o angulo theta pelos catetos. resposta em radianos tg(theta) = C.o/C.a. Valor de theta em arco tangente
-    //theta = atan2((y_destino-pos_y),(x_destino-pos_x));

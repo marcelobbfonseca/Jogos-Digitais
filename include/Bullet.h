@@ -18,5 +18,6 @@ public:
 private:
 	Sprite sp;
 	Vec2 speed;
+	float angle;//bullet angle inclination
 	float distanceLeft;
 };

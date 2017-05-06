@@ -29,7 +29,7 @@ void TileSet::Render(int index, float x, float y){
 		newX = index % columns;
 		newY = index / columns;
 
-		tileSet.SetClip(newX * tileHeight, newY * tileWidth, tileWidth, tileHeight);
+		tileSet.SetClip(newX * tileWidth, newY * tileHeight, tileWidth, tileHeight);
 		tileSet.Render(x,y,0);
 
 

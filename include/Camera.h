@@ -4,7 +4,7 @@
 #include "Vec2.h"
 #include "Game.h"
 
-#define CAMERA_MOVE_SPEED 100
+#define CAMERA_MOVE_SPEED 600
 
 class Camera
 {

@@ -1,9 +1,9 @@
-bin/Minion.o: src/Minion.cpp include/Minion.h include/GameObject.h \
+bin/Bullet.o: src/Bullet.cpp include/Bullet.h include/GameObject.h \
  include/Rect.h include/Vec2.h include/Sprite.h include/Camera.h \
  include/Game.h include/State.h include/TileSet.h include/TileMap.h \
- include/InputManager.h include/Bullet.h include/error.h
+ include/InputManager.h include/error.h
 
-include/Minion.h:
+include/Bullet.h:
 
 include/GameObject.h:
 
@@ -24,7 +24,5 @@ include/TileSet.h:
 include/TileMap.h:
 
 include/InputManager.h:
-
-include/Bullet.h:
 
 include/error.h:

@@ -1,10 +1,8 @@
-#pragma once
-
-#include "SDL2/SDL.h"
-#include "Rect.h"
 
 #ifndef GAMEOBJECT_H
 #define GAMEOBJECT_H
+#include "SDL2/SDL.h"
+#include "Rect.h"
 
 class GameObject
 {

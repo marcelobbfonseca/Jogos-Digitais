@@ -27,29 +27,12 @@ void State::LoadAssets(){
 }
 
 void State::Update(){
-    int mouseX, mouseY;
     if(inputManager.QuitRequested() or inputManager.KeyPress(ESCAPE_KEY))
         quitRequested=true;
 
-    //if space key is pressed create face
-    if(inputManager.KeyPress(ESPACE_KEY)){
-        //SDL_GetMouseState(&mouseX, &mouseY);
-        //AddObject(new Alien(0,0,0));
-    }
     
-    if(inputManager.isMouseDown(SDL_BUTTON_LEFT)) {
-    /*    for(int i = objectArray.size() - 1; i >= 0; --i) {
-            Face* face = (Face*) objectArray[i].get();
-                face->Damage(rand() % 10 + 10);
-                break;
-          }
-    */
-    }
-    
-
  	//checking if any object has died
 	for(unsigned int i = 0; i < objectArray.size(); i++){
-        printf("\t\t\tALOOO caiu: %d\n", i);
         objectArray.at(i)->Update(Game::GetInstance().GetDeltaTime());
         if(objectArray[i]->isDead()){
 			objectArray.erase(objectArray.begin()+i);
@@ -62,7 +45,6 @@ void State::Update(){
 
 void State::Render(){
 	bg.Render(0, 0);
-    cout << "(pos.x, pos.y): " << Camera::pos.x << ", " << Camera::pos.y << endl;
     tileMap->Render(Camera::pos.x, Camera::pos.y); 
 	
     //render all objects .for loop
@@ -73,7 +55,6 @@ void State::Render(){
 void State::AddObject(GameObject* ptr){
     //increment given gameobject to object array
     objectArray.emplace_back(std::unique_ptr<GameObject>(ptr) );
-    //objectArray.emplace_back(std::unique_ptr<Face>( new Face(mouseX, mouseY) ) );
 }
 
 bool State::QuitRequested(){

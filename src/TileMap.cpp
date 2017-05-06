@@ -60,10 +60,10 @@ void TileMap::RenderLayer(int layer, int cameraX /*= 0*/, int cameraY /*= 0*/){
 	for(int x = 0; x < mapWidth; x++){
 		for(int y = 0; y < mapHeight; y++){
 				
-				tileX = (float)( (x+cameraX) * tileSet->GetTileWidth() );
-				tileY = (float)( (y+cameraY) * tileSet->GetTileHeight() );
+				tileX = (float)( (x) * tileSet->GetTileWidth() );
+				tileY = (float)( (y) * tileSet->GetTileHeight() );
 				
-				tileSet->Render(At(x, y, layer), tileX, tileY); //(index,x,y)
+				tileSet->Render(At(x, y, layer), (tileX-cameraX), tileY-cameraY); //(index,x,y)
 		}
 	}
 

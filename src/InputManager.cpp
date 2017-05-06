@@ -87,8 +87,10 @@ bool InputManager::IsKeyDown(int key){
 }
 	
 bool InputManager::MousePress(int button){
-	if (mouseState[button] and mouseUpdate[button]== updateCounter)
+	if (mouseState[button] and mouseUpdate[button]== updateCounter){
+		SDL_GetMouseState(&mouseX, &mouseY);
 		return true;
+	}
 	else
 		return false; 
 	
