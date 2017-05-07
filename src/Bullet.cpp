@@ -3,7 +3,9 @@
 
 #define BULLET_SPEED 200
 
-Bullet::Bullet(float x, float y, float angle, float speed, float maxDistance, std::string sprite): sp("img/minionbullet1.png"){
+Bullet::Bullet( float x, float y, 
+				float angle, float speed, 
+				float maxDistance, std::string sprite/*, float frameTime, int frameCount*/): sp("img/minionbullet1.png"/*, frameTime, frameCount*/){
 	box.x = Camera::pos.x + x - sp.GetWidth()/2;
 	box.y = Camera::pos.y + y - sp.GetHeight()/2;
 	box.w = sp.GetWidth();

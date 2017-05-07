@@ -9,7 +9,7 @@
 #define BULLET_SPEED 60
 #define MAX_DISTANCE 600
 //Used to turn minion back to Alien
-#define MINION_ROTATION_OFFSET 0.523 
+#define MINION_ROTATION_OFFSET 1.383 
 //used for minion distance to Alien
 #define MINION_DISTANCE 100
 //used to sort random minion size
@@ -60,7 +60,8 @@ void Minion::Shoot(Vec2 pos){
 
 	xNew = box.x-Camera::pos.x + sp.GetWidth()/2;
 	yNew = box.y-Camera::pos.y + sp.GetHeight()/2;
-	Bullet* bullet= new Bullet(xNew,yNew,angle,BULLET_SPEED,MAX_DISTANCE,"img/minionbullet2.png");
+	Bullet* bullet= new Bullet(xNew,yNew,angle,BULLET_SPEED,MAX_DISTANCE,"img/minionbullet1.png");
+	//Bullet* bullet= new Bullet(xNew,yNew,angle,BULLET_SPEED,MAX_DISTANCE,"img/minionbullet2.png",sp.frameTime, sp.frameCount);
 	Game::GetInstance().GetState().AddObject(bullet);
 
 }
