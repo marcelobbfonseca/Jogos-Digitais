@@ -12,7 +12,7 @@ class Sprite
 {
 public:
 	Sprite();
-	Sprite(string file);
+	Sprite(string file,int frameCount=1, float frameTime=1.0 ); //
 	void Open(string file);
 	void SetClip(int x, int y, int w, int h);
 	void Render( int x, int y, float angle=0);
@@ -23,12 +23,21 @@ public:
 
 	void SetScaleX(float x);
 	void SetScaleY(float y);
+
+	void Update(float dt);
+	void SetFrame(int frame);
+	void SetFrameCount(int frameCount);
+	void SetFrameTime(float frameTime);
+
 	~Sprite();
 private:
 	SDL_Texture* texture;
 	SDL_Rect clipRect; //clipping rectangle
 	int width, height;
 	float scaleX, scaleY;
+	
+	int frameCount, currentFrame;
+	float frameTime, timeElapsed;
 
 	
 };

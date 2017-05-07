@@ -19,12 +19,13 @@ Sprite::Sprite(){
 	scaleY=1;
 
 }
-Sprite::Sprite(string file){
+Sprite::Sprite(string file, int frameCount /*=1*/, float frameTime /*=1.0*/){
 	texture = nullptr;
 	scaleX=1;
 	scaleY=1;
+	this->frameCount = frameCount;
+	this->frameTime = frameTime;
 	Open(file);
-	
 	
 }
 void Sprite::Open(string file){
@@ -42,6 +43,7 @@ void Sprite::Open(string file){
 		ErrorExit(__LINE__, SDL_GetError(), __FILE__);
 	}
 	SetClip(0,0,width,height);
+	//SetClip(0,0,width*frameCount,height);
 
 	Render(0,0,0);
 }
@@ -71,7 +73,6 @@ void Sprite::Render(int x, int y, float angle){
 		ErrorExit(__LINE__, SDL_GetError(), __FILE__);
 	}
 
-
 }
 
 int Sprite::GetHeight(){
@@ -79,7 +80,8 @@ int Sprite::GetHeight(){
 }
 
 int Sprite::GetWidth(){
-	return width * scaleX;
+	printf("\nframeCount: '%d'\n", frameCount); //nao funciona
+	return ((width/1) * scaleX);
 }
 
 bool Sprite::IsOpen(){
@@ -95,6 +97,28 @@ void Sprite::SetScaleX(float x){
 
 void Sprite::SetScaleY(float y){
 	scaleY = y;
+}
+
+void Sprite::Update(float dt){
+	timeElapsed += dt;
+	//if(timeElapsed>frameTime)
+		//stclip to next frame
+		//chegou no ultimo frame, volta pro primeiro
+}
+
+void Sprite::SetFrame(int frame){
+	this->currentFrame = frame;
+	float x = currentFrame * width;
+	//SetClip(x,0,width,height);
+
+}
+
+void Sprite::SetFrameCount(int frameCount){
+	this->frameCount = frameCount;
+}
+
+void Sprite::SetFrameTime(float frameTime){
+	this->frameTime = frameTime;
 }
 
 Sprite::~Sprite(){

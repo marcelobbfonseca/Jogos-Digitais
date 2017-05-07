@@ -1,28 +1,12 @@
-bin/Bullet.o: src/Bullet.cpp include/Bullet.h include/GameObject.h \
- include/Rect.h include/Vec2.h include/Sprite.h include/Camera.h \
- include/Game.h include/State.h include/TileSet.h include/TileMap.h \
- include/InputManager.h include/error.h
+bin/Penguins.o: src/Penguins.cpp include/Penguins.h include/Sprite.h \
+ include/GameObject.h include/Rect.h include/Vec2.h
 
-include/Bullet.h:
+include/Penguins.h:
+
+include/Sprite.h:
 
 include/GameObject.h:
 
 include/Rect.h:
 
 include/Vec2.h:
-
-include/Sprite.h:
-
-include/Camera.h:
-
-include/Game.h:
-
-include/State.h:
-
-include/TileSet.h:
-
-include/TileMap.h:
-
-include/InputManager.h:
-
-include/error.h:
