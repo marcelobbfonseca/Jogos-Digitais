@@ -1,12 +1,3 @@
-bin/Penguins.o: src/Penguins.cpp include/Penguins.h include/Sprite.h \
- include/GameObject.h include/Rect.h include/Vec2.h
+bin/Timer.o: src/Timer.cpp include/Timer.h
 
-include/Penguins.h:
-
-include/Sprite.h:
-
-include/GameObject.h:
-
-include/Rect.h:
-
-include/Vec2.h:
+include/Timer.h:
