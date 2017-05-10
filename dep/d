@@ -1,17 +1,26 @@
-bin/Penguins.o: src/Penguins.cpp include/Penguins.h include/Sprite.h \
- include/GameObject.h include/Rect.h include/Vec2.h \
+bin/State.o: src/State.cpp include/GameObject.h include/Rect.h \
+ include/Vec2.h include/Face.h include/GameObject.h include/Sprite.h \
+ include/State.h include/TileSet.h include/TileMap.h \
  include/InputManager.h include/Camera.h include/Game.h include/State.h \
- include/TileSet.h include/TileMap.h
-
-include/Penguins.h:
-
-include/Sprite.h:
+ include/error.h include/Alien.h include/Minion.h include/Penguins.h
 
 include/GameObject.h:
 
 include/Rect.h:
 
 include/Vec2.h:
+
+include/Face.h:
+
+include/GameObject.h:
+
+include/Sprite.h:
+
+include/State.h:
+
+include/TileSet.h:
+
+include/TileMap.h:
 
 include/InputManager.h:
 
@@ -21,6 +30,10 @@ include/Game.h:
 
 include/State.h:
 
-include/TileSet.h:
+include/error.h:
 
-include/TileMap.h:
+include/Alien.h:
+
+include/Minion.h:
+
+include/Penguins.h:

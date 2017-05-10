@@ -1,7 +1,6 @@
 #include <iostream>
 #include <string>
 using std::cout;
-using std::string;
 using std::endl;
 
 #include "Sprite.h"
@@ -17,14 +16,20 @@ Sprite::Sprite(){
 	texture = nullptr;
 	scaleX=1;
 	scaleY=1;
+	this->frameCount = 1;
+	this->frameTime = 1.0;
+	this->timeElapsed = 0.0;
+	this->currentFrame = 1;
 
 }
 Sprite::Sprite(string file, int frameCount /*=1*/, float frameTime /*=1.0*/){
 	texture = nullptr;
 	scaleX=1;
 	scaleY=1;
-	this->frameCount = frameCount; //aparelho
+	this->frameCount = frameCount;
 	this->frameTime = frameTime;
+	this->timeElapsed = 0.0;
+	this->currentFrame = 1;
 	Open(file);
 	
 }
@@ -35,19 +40,16 @@ void Sprite::Open(string file){
 	
 
 	texture = Resources::GetImage(file);
-	//texture = IMG_LoadTexture( game.GetRenderer(), const_file); //can return nullptr.treat
 	if (texture == nullptr){
 		ErrorExit(__LINE__, SDL_GetError(), __FILE__);
 	}
 	if(SDL_QueryTexture(texture ,nullptr,nullptr, &width,&height)){ //pass address of 'w' and 'h'
 		ErrorExit(__LINE__, SDL_GetError(), __FILE__);
 	}
-	SetClip(0,0,width,height);
-	//SetClip(0,0,width/frameCount,height);
 
-	Render(0,0,0);
+	SetClip(0,0,width/frameCount,height);
+	//Render(0,0,0);
 }
-
 
 void Sprite::SetClip(int x, int y, int w, int h){
 	clipRect.x = x;
@@ -55,7 +57,6 @@ void Sprite::SetClip(int x, int y, int w, int h){
 	clipRect.w = w;
 	clipRect.h = h;
 }
-
 //wrapper for RenderCopy
 void Sprite::Render(int x, int y, float angle){
 	float degree = (angle * 180)/PI; //convert from radian to degree
@@ -67,12 +68,9 @@ void Sprite::Render(int x, int y, float angle){
 	destRetangle.y = y;
 	destRetangle.w = clipRect.w*scaleX;
 	destRetangle.h = clipRect.h*scaleY;
-	
 
-	if(SDL_RenderCopyEx(game.GetRenderer(), texture, &clipRect, &destRetangle,degree,NULL,SDL_FLIP_NONE)!=0){
+	if(SDL_RenderCopyEx(game.GetRenderer(), texture, &clipRect, &destRetangle,degree,NULL,SDL_FLIP_NONE)!=0)
 		ErrorExit(__LINE__, SDL_GetError(), __FILE__);
-	}
-
 }
 
 int Sprite::GetHeight(){
@@ -80,9 +78,7 @@ int Sprite::GetHeight(){
 }
 
 int Sprite::GetWidth(){
-	//printf("\nframeCount: '%d'\n", frameCount); //nao funciona
-	//return ((width/frameCount) * scaleX);
-	return ((width/1) * scaleX);
+	return ((width/frameCount) * scaleX);
 }
 
 bool Sprite::IsOpen(){
@@ -90,6 +86,20 @@ bool Sprite::IsOpen(){
 		return true;
 	else
 		return false;
+}
+
+void Sprite::Update(float dt){
+	timeElapsed += dt;
+	if(timeElapsed>frameTime){
+		timeElapsed-=frameTime;
+		currentFrame++;
+		//chegou no ultimo frame, volta pro primeiro
+		if(currentFrame>frameCount)
+			currentFrame=1;
+		SetFrame(currentFrame);//setclip to next frame
+		
+	} 
+
 }
 
 void Sprite::SetScaleX(float x){
@@ -100,25 +110,11 @@ void Sprite::SetScaleY(float y){
 	scaleY = y;
 }
 
-void Sprite::Update(float dt){
-	timeElapsed += dt;
-	if(timeElapsed>frameTime){
-		timeElapsed-=frameTime;
-		currentFrame= currentFrame+1;
-		//chegou no ultimo frame, volta pro primeiro
-		if(currentFrame>frameCount)
-			currentFrame=1;
-		clipRect.x= currentFrame*(width/frameCount);//stclip to next frame
-
-		
-	}
-
-}
 
 void Sprite::SetFrame(int frame){
 	this->currentFrame = frame;
-	int x = currentFrame * (width/frameCount);
-	clipRect.x= x;
+	int x = (currentFrame-1) * (width/frameCount);//currentFrame starts with 0 to work
+	this->clipRect.x= x;
 
 }
 
@@ -130,6 +126,15 @@ void Sprite::SetFrameCount(int frameCount){
 void Sprite::SetFrameTime(float frameTime){
 	this->frameTime = frameTime;
 }
+
+
+int Sprite::GetFrameCount(){
+	return frameCount;
+}
+float Sprite::GetFrameTime(){
+	return frameTime;
+}
+
 
 Sprite::~Sprite(){
 	//resources far´a isso

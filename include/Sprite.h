@@ -29,6 +29,9 @@ public:
 	void SetFrameCount(int frameCount);
 	void SetFrameTime(float frameTime);
 
+	int GetFrameCount();
+	float GetFrameTime();
+
 	~Sprite();
 private:
 	SDL_Texture* texture;

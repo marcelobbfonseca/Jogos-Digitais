@@ -9,7 +9,7 @@ using std::string;
 class Animation : public GameObject
 {
 public:
-	Animation(float x, float y, float rotation, string sprite, int frameCount, float frameTime, bool ends);
+	Animation(float x, float y, float rotation, string sprite, int frame_Count, float frameTime, bool ends);
 	~Animation();
 	
 	void Update(float dt);

@@ -60,8 +60,8 @@ void Minion::Shoot(Vec2 pos){
 
 	xNew = box.x-Camera::pos.x + sp.GetWidth()/2;
 	yNew = box.y-Camera::pos.y + sp.GetHeight()/2;
-	Bullet* bullet= new Bullet(xNew,yNew,angle,BULLET_SPEED,MAX_DISTANCE,"img/minionbullet1.png");
-	//Bullet* bullet= new Bullet(xNew,yNew,angle,BULLET_SPEED,MAX_DISTANCE,"img/minionbullet2.png",sp.frameTime, sp.frameCount);
+	//Bullet* bullet= new Bullet(xNew,yNew,angle,BULLET_SPEED,MAX_DISTANCE,"img/minionbullet1.png");
+	Bullet* bullet= new Bullet(xNew,yNew,angle,BULLET_SPEED,MAX_DISTANCE,"img/minionbullet2.png",sp.GetFrameTime(), sp.GetFrameCount());
 	Game::GetInstance().GetState().AddObject(bullet);
 
 }

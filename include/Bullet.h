@@ -10,7 +10,7 @@
 class Bullet : public GameObject
 {
 public:
-	Bullet(float x, float y, float angle, float speed, float maxDistance, std::string sprite/*, float frameTime, int frameCount*/);
+	Bullet(float x, float y, float angle, float speed, float maxDistance, std::string sprite, float frameTime, int frameCount);
 	void Update(float dt);
 	void Render();
 	bool isDead();

@@ -11,14 +11,15 @@ using std::string;
 #include "Camera.h"
 #include "error.h"
 #include "Alien.h"
-
+#include "Penguins.h"
 
 State::State() : tileSet(64, 64, "img/tileset.png"), inputManager(InputManager::GetInstance()){
 
     tileMap = new TileMap("map/tileMap.txt", &tileSet);
 	quitRequested = false;
-    //por em 512, 300
     objectArray.emplace_back(std::unique_ptr<Alien>( new Alien (512,300, 5) ));
+    objectArray.push_back(std::unique_ptr<Penguins>( new Penguins (300,300) ) );
+
 }
 
 void State::LoadAssets(){

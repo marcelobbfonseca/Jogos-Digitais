@@ -12,9 +12,8 @@
 using std::vector;
 
 typedef unsigned int uint;
-Alien::Alien(float x, float y, int nMinions){
+Alien::Alien(float x, float y, int nMinions): sp(){
 	
-
 	sp.Open("img/alien.png");
 	box.x = x - sp.GetWidth()/2; 
 	box.y = y - sp.GetHeight()/2;

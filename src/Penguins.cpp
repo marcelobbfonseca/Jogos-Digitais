@@ -4,7 +4,7 @@
 
 Penguins* Penguins::player = nullptr;
 
-Penguins::Penguins(float x, float y): speed(){
+Penguins::Penguins(float x, float y): GameObject(), speed(){
 	bodySp.Open("img/penguin.png");
 	cannonSp.Open("img/cubngun.png");
 
@@ -14,10 +14,11 @@ Penguins::Penguins(float x, float y): speed(){
 	box.h = bodySp.GetHeight();
 	
 
+
 	player = this;
-	linearSpeed = PENGUIN_SPEED;
+	linearSpeed = 1.0;//PENGUIN_SPEED;
 	cannonAngle = 1.0;
-	hp = PENGUIN_HEALTH;
+	hp = 100;//PENGUIN_HEALTH;
 	//Camera::Follow(this);
 
 
