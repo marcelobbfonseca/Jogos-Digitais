@@ -63,27 +63,37 @@ void InputManager::Update(){
 }
 
 bool InputManager::KeyPress(int key){
-
-	if( keyUpdate[key] == updateCounter )
-		return true;
-	else
+	
+	try{
+		if( keyUpdate.at(key) == updateCounter )
+			return true;
+		else
+			return false;
+	}catch (const std::out_of_range& oor){
 		return false;
+	}
 }
 
 bool InputManager::KeyRelease(int key){
-
-	if( keyUpdate.at(key) == updateCounter )
-		return true;
-	else
+	try{
+		if( keyUpdate.at(key) == updateCounter )
+			return true;
+		else
+			return false;
+	}catch (const std::out_of_range& oor){
 		return false;
+	}
 }
 
 bool InputManager::IsKeyDown(int key){
-
-	if(keyUpdate.at(key) != updateCounter)
-		return true;
-	else
+	try{
+		if(keyUpdate.at(key) != updateCounter)
+			return true;
+		else
+			return false;
+	}catch (const std::out_of_range& oor){
 		return false;
+	}
 }
 	
 bool InputManager::MousePress(int button){
