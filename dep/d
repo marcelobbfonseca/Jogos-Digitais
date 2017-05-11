@@ -1,3 +1,30 @@
-bin/Vec2.o: src/Vec2.cpp include/Vec2.h
+bin/Penguins.o: src/Penguins.cpp include/Penguins.h include/Sprite.h \
+ include/GameObject.h include/Rect.h include/Vec2.h \
+ include/InputManager.h include/Camera.h include/Game.h include/State.h \
+ include/TileSet.h include/TileMap.h include/Collision.h include/Bullet.h
+
+include/Penguins.h:
+
+include/Sprite.h:
+
+include/GameObject.h:
+
+include/Rect.h:
 
 include/Vec2.h:
+
+include/InputManager.h:
+
+include/Camera.h:
+
+include/Game.h:
+
+include/State.h:
+
+include/TileSet.h:
+
+include/TileMap.h:
+
+include/Collision.h:
+
+include/Bullet.h:

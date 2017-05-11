@@ -2,6 +2,9 @@
 #include "InputManager.h"
 #include "Camera.h"
 #include "Collision.h"
+#include "Bullet.h"
+#define PENGUIN_BULLET_SPEED 70
+#define PENGUIN_BULLET_MAX_DISTANCE 600
 
 using std::string;
 
@@ -29,42 +32,48 @@ Penguins::Penguins(float x, float y): GameObject(), speed(){
 void Penguins::Update(float dt){
 	InputManager &i= InputManager::GetInstance();
 
-	if(i.IsKeyDown('w') || i.IsKeyDown('W')){
-		
-		speed= speed + Vec2(1, 0) + speed*PENGUIN_ACCELERATION*dt;
-		if(speed.Magnitude() <= MAX_SPEED ){
-			speed.Normalize();
-			speed= speed * MAX_SPEED;
-		}
+	
 
-		//if(speed.Magnitude() <= MAX_SPEED)
-		//	speed = Vec2(XCONST,YCONST) + speed+speed;// linearSpeed+PENGUIN_ACCELERATION*dt;
+	// up and down
+	if(i.IsKeyDown('w') or i.IsKeyDown('W')){
+		
+		if(speed.x >= MAX_SPEED ){
+			speed= Vec2(MAX_SPEED,0.0);
+		}else{
+			speed.x = speed.x + PENGUIN_ACCELERATION;
+		}
+		printf("GO!! %f\n", speed.x);
 		
 	}
-	else if(i.IsKeyDown('s') || i.IsKeyDown('S')){
+	else if(i.IsKeyDown('s') or i.IsKeyDown('S')){
 		
-		speed= speed - Vec2(1, 0) + speed*PENGUIN_ACCELERATION*dt;
-		if(speed.Magnitude() >= MAX_SPEED ){
-			speed.Normalize();
-			speed= speed * MAX_SPEED;
-		}
-
-		//if(speed.Magnitude() <= MAX_SPEED)
-		//	speed = Vec2(XCONST,YCONST) + speed+speed;//linearSpeed+speed *PENGUIN_ACCELERATION*dt;
+		if(speed.x <= 0.0)
+			speed= Vec2(0.0,0.0);
+		else
+			speed.x = speed.x - PENGUIN_ACCELERATION;
+		
+		printf("BREAK!! %f\n", speed.x);
 	
 	}
-	if(i.IsKeyDown('a') || i.IsKeyDown('A')){
-		rotation -= PENGUIN_ANG_SPEED * dt;
+
+	//left or right
+	if(i.IsKeyDown('a') or i.IsKeyDown('A')){
+		rotation = rotation - PENGUIN_ANG_SPEED * dt;
+
 	}
-	else if(i.IsKeyDown('d') || i.IsKeyDown('D')){
-		rotation += PENGUIN_ANG_SPEED * dt;
-	
+	if(i.IsKeyDown('d') or i.IsKeyDown('D')){
+		rotation = rotation + PENGUIN_ANG_SPEED * dt;
+
 	}
+
+
 	box= box + speed.Rotate(rotation)*dt;
 	float x = i.GetMouseX();
 	float y = i.GetMouseY();
 	cannonAngle= (Vec2(x,y) - (box.Center()-Camera::pos)).InclineVet();
-
+	
+	if(i.MousePress(LEFT_MOUSE_BUTTON))
+		Shoot();
 
 }	
 void  Penguins::Render(){
@@ -80,6 +89,15 @@ bool Penguins::isDead(){
 }
 void Penguins::Shoot(){
 
+	float xNew = box.x - Camera::pos.x + cannonSp.GetWidth()/2;
+	float yNew = box.y - Camera::pos.y + cannonSp.GetWidth()/2;
+
+	Bullet* bullet = new Bullet(xNew, yNew, cannonAngle,
+								PENGUIN_BULLET_SPEED, PENGUIN_BULLET_MAX_DISTANCE, 
+								"img/penguinbullet.png", cannonSp.GetFrameTime(), 
+								cannonSp.GetFrameCount()
+								);
+	Game::GetInstance().GetState().AddObject(bullet);
 }
 
 bool Penguins::Is(string type){

@@ -1,7 +1,7 @@
 #include "Bullet.h"
 #include "error.h"
 #include "Collision.h"
-#define BULLET_SPEED 200
+#define BULLET_SPEED 400
 #define BULLET_SPRITE_TIME 0.05
 #define BULLET_SPRITES 3
 
@@ -10,6 +10,7 @@ Bullet::Bullet( float x, float y,
 				float angle, float speed, 
 				float maxDistance, std::string sprite, 
 				float frameTime, int frameCount): GameObject(), sp(sprite, BULLET_SPRITES, BULLET_SPRITE_TIME){
+
 	box.x = Camera::pos.x + x - sp.GetWidth()/2;
 	box.y = Camera::pos.y + y - sp.GetHeight()/2;
 	box.w = sp.GetWidth();

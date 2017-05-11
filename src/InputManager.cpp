@@ -24,7 +24,7 @@ InputManager::InputManager(){
 void InputManager::Update(){
 	SDL_Event event;
 	++updateCounter;
-
+	SDL_GetMouseState(&mouseX, &mouseY);
     while (SDL_PollEvent(&event)) {
 	 	
 	 	if(event.key.repeat)
@@ -87,7 +87,7 @@ bool InputManager::KeyRelease(int key){
 
 bool InputManager::IsKeyDown(int key){
 	try{
-		if(keyUpdate.at(key) != updateCounter)
+		if((keyUpdate.at(key) != updateCounter) )
 			return true;
 		else
 			return false;
@@ -98,7 +98,6 @@ bool InputManager::IsKeyDown(int key){
 	
 bool InputManager::MousePress(int button){
 	if (mouseState[button] and mouseUpdate[button]== updateCounter){
-		SDL_GetMouseState(&mouseX, &mouseY);
 		return true;
 	}
 	else

@@ -5,7 +5,7 @@
 #include <cmath>
 
 //in radians
-#define MINION_CONST_SPEED 0.03
+#define MINION_CONST_SPEED 0.06
 //Bullet speed and max distance
 #define BULLET_SPEED 60
 #define MAX_DISTANCE 600
