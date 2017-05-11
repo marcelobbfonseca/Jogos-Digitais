@@ -1,10 +1,11 @@
 #include "Bullet.h"
 #include "error.h"
-
+#include "Collision.h"
 #define BULLET_SPEED 200
 #define BULLET_SPRITE_TIME 0.05
 #define BULLET_SPRITES 3
 
+using std::string;
 Bullet::Bullet( float x, float y, 
 				float angle, float speed, 
 				float maxDistance, std::string sprite, 
@@ -33,6 +34,15 @@ bool Bullet::isDead(){
 		return true;
 	else
 		return false;
+}
+
+bool Bullet::Is(string type){
+	return (Bullet::Is(type)|| type == "Bullet");
+}
+
+
+void Bullet::NotifyCollision(GameObject& other){
+	
 }
 
 Bullet::~Bullet(){

@@ -1,6 +1,7 @@
 #include "Minion.h"
 #include "Bullet.h"
 #include "error.h"
+#include "Collision.h"
 #include <cmath>
 
 //in radians
@@ -60,11 +61,19 @@ void Minion::Shoot(Vec2 pos){
 
 	xNew = box.x-Camera::pos.x + sp.GetWidth()/2;
 	yNew = box.y-Camera::pos.y + sp.GetHeight()/2;
-	//Bullet* bullet= new Bullet(xNew,yNew,angle,BULLET_SPEED,MAX_DISTANCE,"img/minionbullet1.png");
 	Bullet* bullet= new Bullet(xNew,yNew,angle,BULLET_SPEED,MAX_DISTANCE,"img/minionbullet2.png",sp.GetFrameTime(), sp.GetFrameCount());
 	Game::GetInstance().GetState().AddObject(bullet);
 
 }
+
+
+bool Minion::Is(string type){
+	return (Minion::Is(type)|| type == "Minion");
+}
+void Minion::NotifyCollision(GameObject& other){
+	
+}
+
 Minion::~Minion(){
 
 }

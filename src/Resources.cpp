@@ -11,7 +11,6 @@ using std::unordered_map;
 using std::endl;
 unordered_map<string, SDL_Texture*> Resources::imageTable;
 
-
 SDL_Texture* Resources::GetImage(string file){
 	//header: local variables declarations	
 	const char *const_file = file.c_str();

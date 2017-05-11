@@ -14,10 +14,14 @@ public:
 	void Update(float dt);
 	void Render();
 	bool isDead();
+	
+	bool Is(string type);
+	void NotifyCollision(GameObject& other);
 	~Bullet();
 private:
 	Sprite sp;
 	Vec2 speed;
 	float angle;//bullet angle inclination
 	float distanceLeft;
+	bool targetsPlayer;
 };

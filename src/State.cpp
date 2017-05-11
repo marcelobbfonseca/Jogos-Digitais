@@ -18,7 +18,7 @@ State::State() : tileSet(64, 64, "img/tileset.png"), inputManager(InputManager::
     tileMap = new TileMap("map/tileMap.txt", &tileSet);
 	quitRequested = false;
     objectArray.emplace_back(std::unique_ptr<Alien>( new Alien (512,300, 5) ));
-    objectArray.push_back(std::unique_ptr<Penguins>( new Penguins (300,300) ) );
+    objectArray.push_back(std::unique_ptr<Penguins>( new Penguins (704,640) ) );
 
 }
 

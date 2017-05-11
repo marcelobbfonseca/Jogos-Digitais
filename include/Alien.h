@@ -17,10 +17,12 @@ public:
 	Alien(float x, float y, int nMinions);
 	~Alien();
 
-	//herda de gameobject
 	void Update(float dt);
 	void Render();
 	bool isDead();
+
+	bool Is(string type);
+	void NotifyCollision(GameObject& other);
 private:
 	class Action;
 	Sprite sp;

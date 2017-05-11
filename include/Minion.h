@@ -15,6 +15,9 @@ public:
 	void Render();
 	bool isDead();
 	void Shoot(Vec2 pos);
+
+	bool Is(string type);
+	void NotifyCollision(GameObject& other);
 	~Minion();
 private:
 	Sprite sp;

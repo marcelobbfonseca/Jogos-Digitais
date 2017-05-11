@@ -1,6 +1,9 @@
 #include "Penguins.h"
 #include "InputManager.h"
 #include "Camera.h"
+#include "Collision.h"
+
+using std::string;
 
 Penguins* Penguins::player = nullptr;
 
@@ -16,10 +19,10 @@ Penguins::Penguins(float x, float y): GameObject(), speed(){
 
 
 	player = this;
-	linearSpeed = 1.0;//PENGUIN_SPEED;
+	linearSpeed = PENGUIN_SPEED;
 	cannonAngle = 1.0;
-	hp = 100;//PENGUIN_HEALTH;
-	//Camera::Follow(this);
+	hp = PENGUIN_HEALTH;
+	Camera::Follow(this);
 
 
 }
@@ -28,13 +31,26 @@ void Penguins::Update(float dt){
 
 	if(i.IsKeyDown('w') || i.IsKeyDown('W')){
 		
-		if(speed.Magnitude() <= MAX_SPEED)
-			speed = Vec2(XCONST,YCONST) + speed+speed;// linearSpeed+PENGUIN_ACCELERATION*dt;
+		speed= speed + Vec2(1, 0) + speed*PENGUIN_ACCELERATION*dt;
+		if(speed.Magnitude() <= MAX_SPEED ){
+			speed.Normalize();
+			speed= speed * MAX_SPEED;
+		}
+
+		//if(speed.Magnitude() <= MAX_SPEED)
+		//	speed = Vec2(XCONST,YCONST) + speed+speed;// linearSpeed+PENGUIN_ACCELERATION*dt;
 		
 	}
 	else if(i.IsKeyDown('s') || i.IsKeyDown('S')){
-		if(speed.Magnitude() <= MAX_SPEED)
-			speed = Vec2(XCONST,YCONST) + speed+speed;//linearSpeed+speed *PENGUIN_ACCELERATION*dt;
+		
+		speed= speed - Vec2(1, 0) + speed*PENGUIN_ACCELERATION*dt;
+		if(speed.Magnitude() >= MAX_SPEED ){
+			speed.Normalize();
+			speed= speed * MAX_SPEED;
+		}
+
+		//if(speed.Magnitude() <= MAX_SPEED)
+		//	speed = Vec2(XCONST,YCONST) + speed+speed;//linearSpeed+speed *PENGUIN_ACCELERATION*dt;
 	
 	}
 	if(i.IsKeyDown('a') || i.IsKeyDown('A')){
@@ -44,6 +60,11 @@ void Penguins::Update(float dt){
 		rotation += PENGUIN_ANG_SPEED * dt;
 	
 	}
+	box= box + speed.Rotate(rotation)*dt;
+	float x = i.GetMouseX();
+	float y = i.GetMouseY();
+	cannonAngle= (Vec2(x,y) - (box.Center()-Camera::pos)).InclineVet();
+
 
 }	
 void  Penguins::Render(){
@@ -61,7 +82,16 @@ void Penguins::Shoot(){
 
 }
 
+bool Penguins::Is(string type){
+	return (Penguins::Is(type)|| type == "Penguins");
+}
+void Penguins::NotifyCollision(GameObject& other){
+	
+}
+
+
+
 Penguins::~Penguins(){
 	player = nullptr;
-	//Camera::Unfollow();
+	Camera::Unfollow();
 }

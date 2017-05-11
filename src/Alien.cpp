@@ -2,6 +2,7 @@
 #include "InputManager.h"
 #include "Camera.h"
 #include "error.h"
+#include "Collision.h"
 
 #define MOVE_TYPE 0
 #define SHOOT_TYPE 1
@@ -119,6 +120,15 @@ bool Alien::isDead(){
 		return false;
 }
  
+bool Alien::Is(string type){
+	return (Alien::Is(type)|| type == "Alien");
+}
+
+void Alien::NotifyCollision(GameObject& other){
+	
+}
+
+
 Alien::Action::Action(ActionType type, float x, float y){
 	this->type = type;
 	this->pos.x=x;

@@ -5,11 +5,11 @@
 #include "GameObject.h"
 #include "Vec2.h"
 
-#define PENGUIN_HEALTH 30
-#define PENGUIN_SPEED 80
+#define PENGUIN_HEALTH 100
+#define PENGUIN_SPEED 40
 #define PENGUIN_ANG_SPEED 0.5
-#define MAX_SPEED 200
-#define PENGUIN_ACCELERATION 1.3
+#define MAX_SPEED 100
+#define PENGUIN_ACCELERATION 1.1
 
 #define XCONST 1
 #define YCONST 0
@@ -24,6 +24,10 @@ public:
 	void Render();
 	bool isDead();
 	void Shoot();
+	
+	bool Is(string type);
+	void NotifyCollision(GameObject& other);
+
 	static Penguins* player;
 private:
 	Sprite bodySp;
