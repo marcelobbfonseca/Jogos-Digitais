@@ -9,7 +9,7 @@ using std::string;
 Bullet::Bullet( float x, float y, 
 				float angle, float speed, 
 				float maxDistance, std::string sprite, 
-				float frameTime, int frameCount): GameObject(), sp(sprite, BULLET_SPRITES, BULLET_SPRITE_TIME){
+				float frameTime, int frameCount , bool targetsPlayer): GameObject(), sp(sprite, BULLET_SPRITES, BULLET_SPRITE_TIME){
 
 	box.x = Camera::pos.x + x - sp.GetWidth()/2;
 	box.y = Camera::pos.y + y - sp.GetHeight()/2;
@@ -18,6 +18,7 @@ Bullet::Bullet( float x, float y,
 	this->angle = angle;
 	this->speed= Vec2(BULLET_SPEED, 0).Rotate(angle);
 	distanceLeft = maxDistance;
+	this->targetsPlayer = targetsPlayer;
 }
 
 void Bullet::Update(float dt){
@@ -38,12 +39,22 @@ bool Bullet::isDead(){
 }
 
 bool Bullet::Is(string type){
-	return (Bullet::Is(type)|| type == "Bullet");
+	return type == "Bullet";
 }
 
 
 void Bullet::NotifyCollision(GameObject& other){
-	
+	if (other.Is("Bullet")){
+		return;
+	} 
+	else if( (other.Is("Minion") and targetsPlayer==false) or ((other.Is("Alien") and targetsPlayer==false)) or (other.Is("Penguins") and targetsPlayer) ){
+		distanceLeft= 0;
+		return;
+	}
+}
+
+bool Bullet::GetTargetsPlayer(){
+	return targetsPlayer;
 }
 
 Bullet::~Bullet(){

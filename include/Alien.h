@@ -9,7 +9,7 @@
 #include "Minion.h"
 
 
-#define ALIEN_MOVE_SPEED 8
+#define ALIEN_MOVE_SPEED 155
 #define ALIEN_ROTATION_SPEED 0.01
 class Alien : public GameObject
 {

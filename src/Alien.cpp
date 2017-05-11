@@ -3,6 +3,7 @@
 #include "Camera.h"
 #include "error.h"
 #include "Collision.h"
+#include "Bullet.h"
 
 #define MOVE_TYPE 0
 #define SHOOT_TYPE 1
@@ -10,8 +11,9 @@
 #define DISTANCE_TOLERANCE 5
 #define PI 3.141592
 #define DISTANCE_INITIALIZE 999999
+#define ALIEN_DMG 9
 using std::vector;
-
+ 
 typedef unsigned int uint;
 Alien::Alien(float x, float y, int nMinions): sp(){
 	
@@ -121,10 +123,21 @@ bool Alien::isDead(){
 }
  
 bool Alien::Is(string type){
-	return (Alien::Is(type)|| type == "Alien");
+	return type == "Alien";
+	//return (Being::Is(type)|| type == "Alien");
 }
 
 void Alien::NotifyCollision(GameObject& other){
+ 
+	if (other.Is("Bullet")){
+		if(((Bullet&)other).GetTargetsPlayer()==false){
+			hp = hp - ALIEN_DMG;
+			if(isDead()){
+				//~Alien();
+
+			}
+		}
+	}
 	
 }
 

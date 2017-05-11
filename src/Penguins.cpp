@@ -5,7 +5,7 @@
 #include "Bullet.h"
 #define PENGUIN_BULLET_SPEED 70
 #define PENGUIN_BULLET_MAX_DISTANCE 600
-
+#define PENGUIN_DMG 33
 using std::string;
 
 Penguins* Penguins::player = nullptr;
@@ -95,21 +95,34 @@ void Penguins::Shoot(){
 	Bullet* bullet = new Bullet(xNew, yNew, cannonAngle,
 								PENGUIN_BULLET_SPEED, PENGUIN_BULLET_MAX_DISTANCE, 
 								"img/penguinbullet.png", cannonSp.GetFrameTime(), 
-								cannonSp.GetFrameCount()
+								cannonSp.GetFrameCount(), false
 								);
 	Game::GetInstance().GetState().AddObject(bullet);
 }
 
 bool Penguins::Is(string type){
-	return (Penguins::Is(type)|| type == "Penguins");
+	return type == "Penguins";
+	//return (Penguins::Is(type)|| type == "Penguins");
 }
 void Penguins::NotifyCollision(GameObject& other){
-	
+	printf("alo 1\n");
+	if (other.Is("Bullet")){
+		printf("alo 2\n");
+		if(((Bullet&)other).GetTargetsPlayer()){
+
+			hp = hp - PENGUIN_DMG;
+			printf("(%d)IM HIT!! !!\n", hp);
+			if(isDead()){
+				printf("Die!!\n");
+			}
+		}
+	}
 }
 
 
 
 Penguins::~Penguins(){
-	player = nullptr;
 	Camera::Unfollow();
+	player = nullptr;
+
 }

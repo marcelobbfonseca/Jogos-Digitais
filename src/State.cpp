@@ -12,6 +12,8 @@ using std::string;
 #include "error.h"
 #include "Alien.h"
 #include "Penguins.h"
+#include "Collision.h"
+typedef unsigned int uint;
 
 State::State() : tileSet(64, 64, "img/tileset.png"), inputManager(InputManager::GetInstance()){
 
@@ -32,14 +34,26 @@ void State::Update(){
         quitRequested=true;
 
     
- 	//checking if any object has died
-	for(unsigned int i = 0; i < objectArray.size(); i++){
+ 	//Game objects update loop
+	for(uint i = 0; i < objectArray.size(); i++){
         objectArray.at(i)->Update(Game::GetInstance().GetDeltaTime());
+        
+        //collision detection
+        for (uint j = 0; j < objectArray.size(); j++){
+            //printf("olha o J: %u\n", j);
+            if(j==i)continue; //skip checking collision with self
+            
+            if(Collision::IsColliding(objectArray[i]->box, objectArray[j]->box, objectArray[i]->rotation, objectArray[j]->rotation)){
+                objectArray[i]->NotifyCollision(*objectArray[j]);
+            }
+        }
+        //death detection
         if(objectArray[i]->isDead()){
-			objectArray.erase(objectArray.begin()+i);
-		}
+            objectArray.erase(objectArray.begin()+i);
+        }
 
  	}//end for objArrayLoop
+
     
     Camera::Update(Game::GetInstance().GetDeltaTime());
 }

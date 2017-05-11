@@ -61,17 +61,21 @@ void Minion::Shoot(Vec2 pos){
 
 	xNew = box.x-Camera::pos.x + sp.GetWidth()/2;
 	yNew = box.y-Camera::pos.y + sp.GetHeight()/2;
-	Bullet* bullet= new Bullet(xNew,yNew,angle,BULLET_SPEED,MAX_DISTANCE,"img/minionbullet2.png",sp.GetFrameTime(), sp.GetFrameCount());
+	Bullet* bullet= new Bullet(xNew,yNew,angle,BULLET_SPEED,MAX_DISTANCE,"img/minionbullet2.png",sp.GetFrameTime(), sp.GetFrameCount(), true);
 	Game::GetInstance().GetState().AddObject(bullet);
 
 }
 
 
 bool Minion::Is(string type){
-	return (Minion::Is(type)|| type == "Minion");
+	return type == "Minion";
 }
 void Minion::NotifyCollision(GameObject& other){
-	
+	if (other.Is("Bullet")){
+		if(((Bullet&)other).GetTargetsPlayer()){
+			printf("ouch!\n");
+		}
+	}
 }
 
 Minion::~Minion(){
