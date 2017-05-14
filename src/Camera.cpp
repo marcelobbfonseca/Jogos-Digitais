@@ -9,8 +9,8 @@ GameObject* Camera::focus= nullptr;
 Vec2 Camera::pos;
 Vec2 Camera::speed;
 
-#define FOCUS_X_PENGUIN_OFFSET 352 
-#define FOCUS_Y_PENGUIN_OFFSET 320
+#define FOCUS_X_PENGUIN_OFFSET 512 
+#define FOCUS_Y_PENGUIN_OFFSET 300
 
 void Camera::Follow(GameObject* newFocus){
 	focus = newFocus;

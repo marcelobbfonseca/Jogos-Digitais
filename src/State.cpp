@@ -45,6 +45,7 @@ void State::Update(){
             
             if(Collision::IsColliding(objectArray[i]->box, objectArray[j]->box, objectArray[i]->rotation, objectArray[j]->rotation)){
                 objectArray[i]->NotifyCollision(*objectArray[j]);
+                objectArray[j]->NotifyCollision(*objectArray[i]);
             }
         }
         //death detection

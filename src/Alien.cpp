@@ -130,7 +130,8 @@ bool Alien::Is(string type){
 void Alien::NotifyCollision(GameObject& other){
  
 	if (other.Is("Bullet")){
-		if(((Bullet&)other).GetTargetsPlayer()==false){
+		if( ( (Bullet&)other).GetTargetsPlayer()==false){
+			printf("ai ai To morrendo\n");
 			hp = hp - ALIEN_DMG;
 			if(isDead()){
 				//~Alien();

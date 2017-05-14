@@ -109,15 +109,15 @@ bool Penguins::Is(string type){
 	//return (Penguins::Is(type)|| type == "Penguins");
 }
 void Penguins::NotifyCollision(GameObject& other){
-	//printf("alo 1\n");
+	printf("alo 1\n");
+	std::cout << "other: " << other.Is("Bullet") << std::endl;
 	if (other.Is("Bullet")){
-		//printf("alo 2\n");
+		printf("alo 2\n");
 		if(((Bullet&)other).GetTargetsPlayer()){
-
 			hp = hp - PENGUIN_DMG;
 			printf("(%d)IM HIT!! !!\n", hp);
 			if(isDead()){
-				printf("Die!!\n");
+				printf("Dear diary, today i died.\n");
 			}
 		}
 	}
