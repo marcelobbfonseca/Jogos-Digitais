@@ -133,7 +133,10 @@ void Alien::NotifyCollision(GameObject& other){
 		if( ( (Bullet&)other).GetTargetsPlayer()==false){
 			printf("ai ai To morrendo\n");
 			hp = hp - ALIEN_DMG;
+			if(hp<10)
+				printf("TA QUASE SEM VIDA! VAI MORRE VAI MORRE!\n");
 			if(isDead()){
+				printf("morri :(\n");
 				//~Alien();
 
 			}

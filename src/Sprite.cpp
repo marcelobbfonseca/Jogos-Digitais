@@ -31,7 +31,6 @@ Sprite::Sprite(string file, int frameCount /*=1*/, float frameTime /*=1.0*/){
 	this->timeElapsed = 0.0;
 	this->currentFrame = 1;
 	Open(file);
-	printf("frameCount:%d frameTime:%f\n", frameCount, frameTime);
 	
 }
 void Sprite::Open(string file){
