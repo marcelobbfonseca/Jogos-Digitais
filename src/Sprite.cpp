@@ -31,6 +31,7 @@ Sprite::Sprite(string file, int frameCount /*=1*/, float frameTime /*=1.0*/){
 	this->timeElapsed = 0.0;
 	this->currentFrame = 1;
 	Open(file);
+	printf("frameCount:%d frameTime:%f\n", frameCount, frameTime);
 	
 }
 void Sprite::Open(string file){
@@ -96,6 +97,7 @@ void Sprite::Update(float dt){
 		//chegou no ultimo frame, volta pro primeiro
 		if(currentFrame>frameCount)
 			currentFrame=1;
+		printf("timeElapsed:%f frameTime: %f \t currentFrame: %d frameCount:%d\n", timeElapsed,frameTime ,currentFrame,frameCount);
 		SetFrame(currentFrame);//setclip to next frame
 		
 	} 

@@ -4,8 +4,12 @@
 #include "Collision.h"
 #include "Bullet.h"
 #define PENGUIN_BULLET_SPEED 70
-#define PENGUIN_BULLET_MAX_DISTANCE 600
+#define PENGUIN_BULLET_MAX_DISTANCE 540
 #define PENGUIN_DMG 33
+
+#define PENGUIN_BULLET_SPRITES 4
+#define PENGUIN_BULLET_SPRITE_TIME 0.66
+
 using std::string;
 
 Penguins* Penguins::player = nullptr;
@@ -90,13 +94,13 @@ bool Penguins::isDead(){
 void Penguins::Shoot(){
 
 	float xNew = box.x - Camera::pos.x + cannonSp.GetWidth()/2;
-	float yNew = box.y - Camera::pos.y + cannonSp.GetWidth()/2;
+	float yNew = box.y - Camera::pos.y + cannonSp.GetHeight()/2;
 
 	Bullet* bullet = new Bullet(xNew, yNew, cannonAngle,
 								PENGUIN_BULLET_SPEED, PENGUIN_BULLET_MAX_DISTANCE, 
-								"img/penguinbullet.png", cannonSp.GetFrameTime(), 
-								cannonSp.GetFrameCount(), false
-								);
+								"img/penguinbullet.png", PENGUIN_BULLET_SPRITE_TIME, 
+								PENGUIN_BULLET_SPRITES, false
+								); //PENGUIN_BULLET_SPRITES
 	Game::GetInstance().GetState().AddObject(bullet);
 }
 
@@ -105,9 +109,9 @@ bool Penguins::Is(string type){
 	//return (Penguins::Is(type)|| type == "Penguins");
 }
 void Penguins::NotifyCollision(GameObject& other){
-	printf("alo 1\n");
+	//printf("alo 1\n");
 	if (other.Is("Bullet")){
-		printf("alo 2\n");
+		//printf("alo 2\n");
 		if(((Bullet&)other).GetTargetsPlayer()){
 
 			hp = hp - PENGUIN_DMG;

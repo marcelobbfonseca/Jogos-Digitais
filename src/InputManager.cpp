@@ -16,6 +16,8 @@ InputManager::InputManager(){
 		mouseState[i] = false;
 		mouseUpdate[i] = 0;
 	}
+	//keyUpdate.emplace('a' - 48);
+	//keyUpdate.insert('A' - 48);
 
 
 }
@@ -69,29 +71,30 @@ bool InputManager::KeyPress(int key){
 			return true;
 		else
 			return false;
-	}catch (const std::out_of_range& oor){
+	}catch (std::out_of_range& oor){
 		return false;
 	}
 }
 
 bool InputManager::KeyRelease(int key){
-	try{
+	//try{
 		if( keyUpdate.at(key) == updateCounter )
 			return true;
 		else
 			return false;
-	}catch (const std::out_of_range& oor){
-		return false;
-	}
+	//}catch (std::out_of_range& oor){
+		//return false;
+	//}
 }
 
 bool InputManager::IsKeyDown(int key){
 	try{
-		if((keyUpdate.at(key) != updateCounter) )
+		if( keyUpdate.at(key) != updateCounter )
 			return true;
 		else
 			return false;
-	}catch (const std::out_of_range& oor){
+	}catch(...)
+	{
 		return false;
 	}
 }
