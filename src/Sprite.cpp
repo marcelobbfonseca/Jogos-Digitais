@@ -97,7 +97,7 @@ void Sprite::Update(float dt){
 		//chegou no ultimo frame, volta pro primeiro
 		if(currentFrame>frameCount)
 			currentFrame=1;
-		printf("timeElapsed:%f frameTime: %f \t currentFrame: %d frameCount:%d\n", timeElapsed,frameTime ,currentFrame,frameCount);
+		//printf("timeElapsed:%f frameTime: %f \t currentFrame: %d frameCount:%d\n", timeElapsed,frameTime ,currentFrame,frameCount);
 		SetFrame(currentFrame);//setclip to next frame
 		
 	} 

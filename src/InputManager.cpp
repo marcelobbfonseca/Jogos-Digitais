@@ -77,11 +77,9 @@ bool InputManager::KeyPress(int key){
 bool InputManager::KeyRelease(int key){
 	try{
 		return keyUpdate.at(key) != updateCounter;
-			return false;
 	}catch (std::out_of_range& oor){
-	
+			return false;
 	}
-		return false;
 
 }
 
