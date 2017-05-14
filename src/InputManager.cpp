@@ -16,8 +16,6 @@ InputManager::InputManager(){
 		mouseState[i] = false;
 		mouseUpdate[i] = 0;
 	}
-	//keyUpdate.emplace('a' - 48);
-	//keyUpdate.insert('A' - 48);
 
 
 }
@@ -26,8 +24,10 @@ InputManager::InputManager(){
 void InputManager::Update(){
 	SDL_Event event;
 	++updateCounter;
+	quitRequested=false;
+
 	SDL_GetMouseState(&mouseX, &mouseY);
-    while (SDL_PollEvent(&event)) {
+    while (SDL_PollEvent(&event)) { //if SDL_PollEvent find event. return 1
 	 	
 	 	if(event.key.repeat)
 	 		break;
@@ -67,29 +67,27 @@ void InputManager::Update(){
 bool InputManager::KeyPress(int key){
 	
 	try{
-		if( keyUpdate.at(key) == updateCounter )
-			return true;
-		else
-			return false;
+		return keyUpdate.at(key) == updateCounter;
 	}catch (std::out_of_range& oor){
-		return false;
+		
 	}
+	return false;
 }
 
 bool InputManager::KeyRelease(int key){
-	//try{
-		if( keyUpdate.at(key) == updateCounter )
-			return true;
-		else
+	try{
+		return keyUpdate.at(key) != updateCounter;
 			return false;
-	//}catch (std::out_of_range& oor){
-		//return false;
-	//}
+	}catch (std::out_of_range& oor){
+	
+	}
+		return false;
+
 }
 
 bool InputManager::IsKeyDown(int key){
 	try{
-		if( keyUpdate.at(key) != updateCounter )
+		if( keyState.at(key) == true )
 			return true;
 		else
 			return false;
