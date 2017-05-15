@@ -5,6 +5,7 @@
 #include "Collision.h"
 #include "Bullet.h"
 #include "Animation.h"
+#include "Penguins.h"
 
 #define MOVE_TYPE 0
 #define SHOOT_TYPE 1
@@ -14,6 +15,8 @@
 #define DISTANCE_INITIALIZE 999999
 #define ALIEN_DMG 9
 #define ALIEN_SPRITES 4
+#define IS_CLOSE 150
+#define RESTING_COOLDOWN 2.2
 
 using std::vector;
  
@@ -43,8 +46,118 @@ Alien::Alien(float x, float y, int nMinions): sp(){
 void Alien::Update(float dt){
 	int x, y;
 
-	InputManager &i = InputManager::GetInstance();
+	if(Penguins::player == nullptr)
+		return;
 	
+	//InputManager &i = InputManager::GetInstance();
+
+	if(state == RESTING){
+		restTimer.Update(dt);
+		if(RESTING_COOLDOWN < restTimer.Get()){
+			destination= Penguins::player->box.Center();
+			speed= Penguins::player->box.Center()-box.Center();
+			speed.Normalize();
+			speed= speed*ALIEN_MOVE_SPEED;
+			
+			//change state
+			state= MOVING;
+		}
+	}
+	else if(state == MOVING){
+		if( IS_CLOSE > ( ( destination-box.Center() ).Magnitude() ) ){
+			box = box + destination - box.Center();
+			Vec2 targetPos= Penguins::player->box.Center();
+			
+			float minimumDistance = DISTANCE_INITIALIZE;
+			float minionDistance=0;
+			uint closerMinion;
+			for (uint i = 0; i < minionArray.size(); i++){
+				minionDistance = minionArray.at(i).box.Center().Distance(targetPos);
+				if(minionDistance < minimumDistance ){
+					minimumDistance = minionDistance;
+					closerMinion = i;
+				}
+			}
+			minionArray.at(closerMinion).Shoot(targetPos);			
+
+			restTimer.Restart();
+			state= RESTING;
+
+		}
+		else{
+			box= box + speed*dt;
+		}
+	}else{
+		//error
+	}
+
+
+
+
+
+
+	rotation -= ALIEN_ROTATION_SPEED;
+	for(uint j=0; j < minionArray.size(); j++){
+		minionArray.at(j).Update(dt);
+	}
+
+
+}
+void Alien::Render(){
+	
+	sp.Render(box.x-Camera::pos.x, box.y-Camera::pos.y, rotation);
+	for (uint j = 0; j < minionArray.size(); j++){
+		minionArray[j].Render();
+	}
+}
+bool Alien::isDead(){
+	if(hp <=0)
+		return true;
+	else
+		return false;
+}
+ 
+bool Alien::Is(string type){
+	return type == "Alien";
+	//return (Being::Is(type)|| type == "Alien");
+}
+
+void Alien::NotifyCollision(GameObject& other){
+ 
+	if (other.Is("Bullet")){
+		if( ( (Bullet&)other).GetTargetsPlayer()==false){
+			printf("ai ai To morrendo\n");
+			hp = hp - ALIEN_DMG;
+			if(hp<10)
+				printf("TA QUASE SEM VIDA! VAI MORRE VAI MORRE!\n");
+			if(isDead()){
+				printf("morri :(\n");
+				//Game::GetInstance().GetState().AddObject(new Animation(box.x, box.y, rotation, "img/aliendeath.png", 4, 0.1, true));
+				//~Alien();
+
+			}
+		}
+	}
+	
+}
+
+
+Alien::Action::Action(ActionType type, float x, float y){
+	this->type = type;
+	this->pos.x=x;
+	this->pos.y=y;
+}
+
+Alien::~Alien(){
+	minionArray.clear();
+	alienCount--;
+}
+
+
+
+
+/*
+
 	//mouse esquerdo para tiro e direito para movimento
 	if(i.MousePress(LEFT_MOUSE_BUTTON)){
 		x = i.GetMouseX()+Camera::pos.x;
@@ -110,59 +223,4 @@ void Alien::Update(float dt){
 		}
 
 	}
-	rotation -= ALIEN_ROTATION_SPEED;
-	for(unsigned int i=0; i < minionArray.size(); i++){
-		minionArray.at(i).Update(dt);
-	}
-
-
-}
-void Alien::Render(){
-	
-	sp.Render(box.x-Camera::pos.x, box.y-Camera::pos.y, rotation);
-	for (unsigned int j = 0; j < minionArray.size(); j++){
-		minionArray[j].Render();
-	}
-}
-bool Alien::isDead(){
-	if(hp <=0)
-		return true;
-	else
-		return false;
-}
- 
-bool Alien::Is(string type){
-	return type == "Alien";
-	//return (Being::Is(type)|| type == "Alien");
-}
-
-void Alien::NotifyCollision(GameObject& other){
- 
-	if (other.Is("Bullet")){
-		if( ( (Bullet&)other).GetTargetsPlayer()==false){
-			printf("ai ai To morrendo\n");
-			hp = hp - ALIEN_DMG;
-			if(hp<10)
-				printf("TA QUASE SEM VIDA! VAI MORRE VAI MORRE!\n");
-			if(isDead()){
-				printf("morri :(\n");
-				//Game::GetInstance().GetState().AddObject(new Animation(box.x, box.y, rotation, "img/aliendeath.png", 4, 0.1, true));
-				//~Alien();
-
-			}
-		}
-	}
-	
-}
-
-
-Alien::Action::Action(ActionType type, float x, float y){
-	this->type = type;
-	this->pos.x=x;
-	this->pos.y=y;
-}
-
-Alien::~Alien(){
-	minionArray.clear();
-	alienCount--;
-}
+*/
