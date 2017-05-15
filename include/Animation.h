@@ -16,7 +16,7 @@ public:
 	void Render();
 	bool isDead();
 
-	void NotifyCollision(GameObject* other);
+	void NotifyCollision(GameObject& other);
 	bool Is(string type);
 
 private:

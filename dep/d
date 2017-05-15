@@ -1,13 +1,10 @@
-bin/Sprite.o: src/Sprite.cpp include/Sprite.h include/Game.h \
- include/State.h include/Sprite.h include/GameObject.h include/Rect.h \
- include/Vec2.h include/TileSet.h include/TileMap.h \
- include/InputManager.h include/Resources.h include/error.h
+bin/Alien.o: src/Alien.cpp include/Alien.h include/Sprite.h \
+ include/GameObject.h include/Rect.h include/Vec2.h include/Minion.h \
+ include/Camera.h include/Game.h include/State.h include/TileSet.h \
+ include/TileMap.h include/InputManager.h include/Timer.h include/error.h \
+ include/Collision.h include/Bullet.h include/Animation.h
 
-include/Sprite.h:
-
-include/Game.h:
-
-include/State.h:
+include/Alien.h:
 
 include/Sprite.h:
 
@@ -17,12 +14,26 @@ include/Rect.h:
 
 include/Vec2.h:
 
+include/Minion.h:
+
+include/Camera.h:
+
+include/Game.h:
+
+include/State.h:
+
 include/TileSet.h:
 
 include/TileMap.h:
 
 include/InputManager.h:
 
-include/Resources.h:
+include/Timer.h:
 
 include/error.h:
+
+include/Collision.h:
+
+include/Bullet.h:
+
+include/Animation.h:

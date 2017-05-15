@@ -1,4 +1,6 @@
-#pragma once
+#ifndef ALIEN_H
+#define ALIEN_H
+
 #include <vector>
 #include <queue>
 
@@ -8,6 +10,7 @@
 #include "Vec2.h"
 #include "Minion.h"
 
+#include "Timer.h"
 
 #define ALIEN_MOVE_SPEED 155
 #define ALIEN_ROTATION_SPEED 0.01
@@ -23,6 +26,9 @@ public:
 
 	bool Is(string type);
 	void NotifyCollision(GameObject& other);
+	static int alienCount;
+
+
 private:
 	class Action;
 	Sprite sp;
@@ -30,6 +36,7 @@ private:
 	int hp;
 	std::queue<Action> taskQueue;
 	std::vector<Minion> minionArray;
+	//
 	class Action
 	{
 	public:
@@ -37,11 +44,15 @@ private:
 		Action(ActionType type, float x, float y);
 		Vec2 pos;
 	};
+	//
+	enum AlienState{MOVING, RESTING};
+	AlienState state;
+	Timer restTimer;
+	Vec2 destination;
+
 };
 
-
-
-
+#endif
 
 
 

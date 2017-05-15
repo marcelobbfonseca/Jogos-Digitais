@@ -6,10 +6,10 @@
 #include "Vec2.h"
 
 #define PENGUIN_HEALTH 100
-#define PENGUIN_SPEED 40.0
+#define PENGUIN_SPEED 50.0
 #define PENGUIN_ANG_SPEED 0.5
-#define MAX_SPEED 100.0
-#define PENGUIN_ACCELERATION 1.1
+#define MAX_SPEED 300.0
+#define PENGUIN_ACCELERATION 3.2
 
 #define XCONST 1
 #define YCONST 0

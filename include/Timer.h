@@ -11,7 +11,7 @@ public:
 	void Restart();
 	float Get();
 private:
-	float time;
+	float _time;
 
 };
 

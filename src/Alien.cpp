@@ -4,6 +4,7 @@
 #include "error.h"
 #include "Collision.h"
 #include "Bullet.h"
+#include "Animation.h"
 
 #define MOVE_TYPE 0
 #define SHOOT_TYPE 1
@@ -12,6 +13,8 @@
 #define PI 3.141592
 #define DISTANCE_INITIALIZE 999999
 #define ALIEN_DMG 9
+#define ALIEN_SPRITES 4
+
 using std::vector;
  
 typedef unsigned int uint;
@@ -137,6 +140,7 @@ void Alien::NotifyCollision(GameObject& other){
 				printf("TA QUASE SEM VIDA! VAI MORRE VAI MORRE!\n");
 			if(isDead()){
 				printf("morri :(\n");
+				//Game::GetInstance().GetState().AddObject(new Animation(box.x, box.y, rotation, "img/aliendeath.png", 4, 0.1, true));
 				//~Alien();
 
 			}

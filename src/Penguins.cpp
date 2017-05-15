@@ -3,12 +3,13 @@
 #include "Camera.h"
 #include "Collision.h"
 #include "Bullet.h"
-#define PENGUIN_BULLET_SPEED 70
+#define PENGUIN_BULLET_SPEED 120
 #define PENGUIN_BULLET_MAX_DISTANCE 540
 #define PENGUIN_DMG 33
 
 #define PENGUIN_BULLET_SPRITES 4
 #define PENGUIN_BULLET_SPRITE_TIME 0.66
+#define CONST 0.25
 
 using std::string;
 
@@ -44,9 +45,9 @@ void Penguins::Update(float dt){
 		if(speed.x >= MAX_SPEED ){
 			speed= Vec2(MAX_SPEED,0.0);
 		}else{
-			speed.x = speed.x + PENGUIN_ACCELERATION;
+			speed.x = speed.x + CONST + PENGUIN_ACCELERATION;
 		}
-		printf("GO!! %f\n", speed.x);
+		//printf("GO!! %f\n", speed.x);
 		
 	}
 	else if(i.IsKeyDown('s') or i.IsKeyDown('S')){
@@ -54,19 +55,19 @@ void Penguins::Update(float dt){
 		if(speed.x <= 0.0)
 			speed= Vec2(0.0,0.0);
 		else
-			speed.x = speed.x - PENGUIN_ACCELERATION;
+			speed.x = speed.x - (10*CONST) - PENGUIN_ACCELERATION * dt;
 		
-		printf("BREAK!! %f\n", speed.x);
+		//printf("BREAK!! %f\n", speed.x);
 	
 	}
 
 	//left or right
 	if(i.IsKeyDown('a') or i.IsKeyDown('A')){
-		rotation = rotation - PENGUIN_ANG_SPEED * dt;
+		rotation = rotation - CONST - PENGUIN_ANG_SPEED * dt;
 
 	}
 	if(i.IsKeyDown('d') or i.IsKeyDown('D')){
-		rotation = rotation + PENGUIN_ANG_SPEED * dt;
+		rotation = rotation + CONST + PENGUIN_ANG_SPEED * dt;
 
 	}
 
