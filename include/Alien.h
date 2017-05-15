@@ -45,8 +45,7 @@ private:
 		Vec2 pos;
 	};
 	//
-	enum AlienState{MOVING, RESTING};
-	AlienState state;
+	enum AlienState{MOVING, RESTING} state;
 	Timer restTimer;
 	Vec2 destination;
 

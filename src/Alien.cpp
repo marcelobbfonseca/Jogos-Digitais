@@ -18,6 +18,8 @@
 using std::vector;
  
 typedef unsigned int uint;
+int Alien::alienCount=0;
+
 Alien::Alien(float x, float y, int nMinions): sp(){
 	
 	sp.Open("img/alien.png");
@@ -26,12 +28,16 @@ Alien::Alien(float x, float y, int nMinions): sp(){
 	box.w = sp.GetWidth();
 	box.h = sp.GetHeight();
 	
+	state = RESTING;
 	hp = FULL_HEALTH;
 
 	//Build minion array. Sort the minions positions around the circle(in 360degrees) and convert to radians
 	for(int i=0; i < nMinions; i++){
 		minionArray.emplace_back( Minion(this, ( ( (i*360)/nMinions)*PI)/180 )); 
 	}
+
+	++alienCount;
+
 }
 
 void Alien::Update(float dt){
@@ -157,5 +163,6 @@ Alien::Action::Action(ActionType type, float x, float y){
 }
 
 Alien::~Alien(){
-	
+	minionArray.clear();
+	alienCount--;
 }
