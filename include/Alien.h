@@ -30,21 +30,11 @@ public:
 
 
 private:
-	class Action;
 	Sprite sp;
 	Vec2 speed;	
 	int hp;
-	std::queue<Action> taskQueue;
 	std::vector<Minion> minionArray;
-	//
-	class Action
-	{
-	public:
-		enum ActionType{MOVE, SHOOT} type;
-		Action(ActionType type, float x, float y);
-		Vec2 pos;
-	};
-	//
+	
 	enum AlienState{MOVING, RESTING} state;
 	Timer restTimer;
 	Vec2 destination;

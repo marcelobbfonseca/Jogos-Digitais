@@ -66,10 +66,10 @@ void Alien::Update(float dt){
 	else if(state == MOVING){
 		if( IS_CLOSE > ( ( destination-box.Center() ).Magnitude() ) ){
 			box = box + destination - box.Center();
-			Vec2 targetPos= Penguins::player->box.Center();
+			Vec2 targetPos = Penguins::player->box.Center();
 			
 			float minimumDistance = DISTANCE_INITIALIZE;
-			float minionDistance=0;
+			float minionDistance = 0;
 			uint closerMinion;
 			for (uint i = 0; i < minionArray.size(); i++){
 				minionDistance = minionArray.at(i).box.Center().Distance(targetPos);
@@ -81,7 +81,7 @@ void Alien::Update(float dt){
 			minionArray.at(closerMinion).Shoot(targetPos);			
 
 			restTimer.Restart();
-			state= RESTING;
+			state = RESTING;
 
 		}
 		else{
@@ -142,11 +142,6 @@ void Alien::NotifyCollision(GameObject& other){
 }
 
 
-Alien::Action::Action(ActionType type, float x, float y){
-	this->type = type;
-	this->pos.x=x;
-	this->pos.y=y;
-}
 
 Alien::~Alien(){
 	minionArray.clear();
@@ -157,6 +152,11 @@ Alien::~Alien(){
 
 
 /*
+Alien::Action::Action(ActionType type, float x, float y){
+	this->type = type;
+	this->pos.x=x;
+	this->pos.y=y;
+}
 
 	//mouse esquerdo para tiro e direito para movimento
 	if(i.MousePress(LEFT_MOUSE_BUTTON)){
