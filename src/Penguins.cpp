@@ -3,6 +3,8 @@
 #include "Camera.h"
 #include "Collision.h"
 #include "Bullet.h"
+#include "Animation.h"
+
 #define PENGUIN_BULLET_SPEED 120
 #define PENGUIN_BULLET_MAX_DISTANCE 540
 #define PENGUIN_DMG 33
@@ -116,6 +118,7 @@ void Penguins::NotifyCollision(GameObject& other){
 			printf("(%d)IM HIT!! !!\n", hp);
 			if(isDead()){
 				printf("Dear diary, today i died.\n");
+				Game::GetInstance().GetState().AddObject( new Animation(box.x, box.y, rotation, "img/penguindeath.png", 5, 0.3, true));
 				Camera::Unfollow();
 			}
 		}
