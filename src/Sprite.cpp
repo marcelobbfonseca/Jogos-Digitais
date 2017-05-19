@@ -46,7 +46,6 @@ void Sprite::Open(string file){
 	if(SDL_QueryTexture(texture ,nullptr,nullptr, &width,&height)){ //pass address of 'w' and 'h'
 		ErrorExit(__LINE__, SDL_GetError(), __FILE__);
 	}
-
 	SetClip(0,0,width/frameCount,height);
 	//Render(0,0,0);
 }

@@ -65,9 +65,10 @@ void Alien::Update(float dt){
 	}
 	else if(state == MOVING){
 		if( IS_CLOSE > ( ( destination-box.Center() ).Magnitude() ) ){
-			box = box + destination - box.Center();
+
+			//box = box + destination - box.Center();
 			Vec2 targetPos = Penguins::player->box.Center();
-			
+
 			float minimumDistance = DISTANCE_INITIALIZE;
 			float minionDistance = 0;
 			uint closerMinion;
@@ -82,16 +83,16 @@ void Alien::Update(float dt){
 
 			restTimer.Restart();
 			state = RESTING;
+			
 
 		}
 		else{
-			box= box + speed*dt;
+			box = box + speed*dt;
 		}
+
 	}else{
 		//error
 	}
-
-
 
 
 
@@ -101,10 +102,9 @@ void Alien::Update(float dt){
 		minionArray.at(j).Update(dt);
 	}
 
-
 }
 void Alien::Render(){
-	
+	//printf("Render X:%f \tY:%f\n", box.x-Camera::pos.x, box.y-Camera::pos.y);
 	sp.Render(box.x-Camera::pos.x, box.y-Camera::pos.y, rotation);
 	for (uint j = 0; j < minionArray.size(); j++){
 		minionArray[j].Render();
@@ -131,8 +131,8 @@ void Alien::NotifyCollision(GameObject& other){
 			if(hp<10)
 				printf("TA QUASE SEM VIDA! VAI MORRE VAI MORRE!\n");
 			if(isDead()){
-				printf("morri :(\n");
-				//Game::GetInstance().GetState().AddObject(new Animation(box.x, box.y, rotation, "img/aliendeath.png", 4, 0.1, true));
+				printf("morri :(   \n");
+				Game::GetInstance().GetState().AddObject(new Animation(box.x, box.y, rotation, "img/aliendeath.png", 4, 0.3, true));
 				//~Alien();
 
 			}

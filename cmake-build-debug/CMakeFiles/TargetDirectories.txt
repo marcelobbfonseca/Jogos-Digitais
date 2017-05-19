@@ -1,3 +1,0 @@
-/home/marcelo/Documentos/IDJ/trabalho_idj/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/marcelo/Documentos/IDJ/trabalho_idj/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/marcelo/Documentos/IDJ/trabalho_idj/cmake-build-debug/CMakeFiles/trabalho_idj.dir

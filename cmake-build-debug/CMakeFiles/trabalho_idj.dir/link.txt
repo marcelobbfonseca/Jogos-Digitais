@@ -1,1 +1,0 @@
-/usr/bin/c++   -g   CMakeFiles/trabalho_idj.dir/Game.cpp.o CMakeFiles/trabalho_idj.dir/main.cpp.o CMakeFiles/trabalho_idj.dir/Sprite.cpp.o CMakeFiles/trabalho_idj.dir/State.cpp.o  -o trabalho_idj 
