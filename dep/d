@@ -1,3 +1,32 @@
-bin/Vec2.o: src/Vec2.cpp include/Vec2.h
+bin/Text.o: src/Text.cpp include/Text.h include/Rect.h include/Vec2.h \
+ include/error.h include/Resources.h include/Game.h include/StageState.h \
+ include/Sprite.h include/GameObject.h include/TileSet.h \
+ include/TileMap.h include/InputManager.h include/State.h include/Music.h
+
+include/Text.h:
+
+include/Rect.h:
 
 include/Vec2.h:
+
+include/error.h:
+
+include/Resources.h:
+
+include/Game.h:
+
+include/StageState.h:
+
+include/Sprite.h:
+
+include/GameObject.h:
+
+include/TileSet.h:
+
+include/TileMap.h:
+
+include/InputManager.h:
+
+include/State.h:
+
+include/Music.h:

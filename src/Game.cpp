@@ -183,3 +183,7 @@ void Game::Push(State* state){
 
 	storedState= state;
 }
+
+SDL_Window* Game::GetWindow(){
+	return window;
+}

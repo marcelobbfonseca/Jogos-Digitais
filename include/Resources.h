@@ -27,7 +27,7 @@ public:
 	static Mix_Chunk* GetSound(string file);
 	static void ClearSound();
 
-	static TTF_Font* GetFont();
+	static TTF_Font* GetFont(string file, int fontSize);
 	static void ClearFont();
 
 private:

@@ -118,9 +118,34 @@ void Resources::ClearSound(){
 
 }
 
-TTF_Font* Resources::GetFont(){
+TTF_Font* Resources::GetFont(string file, int fontSize){
+	const char *const_file = file.c_str();
+	Game& game = Game::GetInstance();
+	TTF_Font* font;
+	unordered_map< string, TTF_Font* >::const_iterator got = fontTable.find(file);
+	
+	//check if font exist. yes?: return pointer  | no?: load and insert pair (path,ptr) on table
+  	if ( got == fontTable.end() ){
+    	//not found
+    	font = TTF_OpenFont(const_file, fontSize);
+  		if (font == nullptr)
+			ErrorExit(__LINE__, TTF_GetError() ,__FILE__);
 
+		fontTable.emplace(file, font);
+	}
+  	else{
+    	//Got it! got->first and got->second
+    	font = got->second;
+  	}
+
+	return font;
 }
 void Resources::ClearFont(){
+	std::unordered_map<string, TTF_Font*>::iterator i;
+	
+	for(i = fontTable.begin(); i != fontTable.end(); i++){
+			TTF_CloseFont((*i).second);
+	}
+	fontTable.clear();
 
 }

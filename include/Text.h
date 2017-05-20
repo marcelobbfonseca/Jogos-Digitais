@@ -16,8 +16,8 @@ class Text
 		Text(string fontFile, int fontSize, TextStyle style, string text, SDL_Color color, int x=0, int y=0);
 		~Text();
 
-		void Render();
-		void SetPos();
+		void Render(int cameraX=0, int cameraY=0);
+		void SetPos(int x, int y, bool centerX, bool centerY);
 		void SetText(string text);
 		void SetColor(SDL_Color color);
 		void SetStyle(TextStyle style);

@@ -25,6 +25,7 @@ public:
 	void Push(State* state);
 	void Run();
 	float GetDeltaTime();
+	SDL_Window* GetWindow();
 
 	//StageState& GetState();
 
