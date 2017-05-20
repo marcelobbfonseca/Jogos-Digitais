@@ -30,8 +30,8 @@ int main(int argc, char const *argv[]){
 	height = 600;
 	
 	Game game(title,width,height);
-	//game.Push( new TitleState());
-	game.Push( new StageState());
+	game.Push( new TitleState());
+	//game.Push( new StageState());
 	
 	game.Run();
 
