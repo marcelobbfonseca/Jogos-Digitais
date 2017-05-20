@@ -1,39 +1,36 @@
 
-
 #ifndef STATE_H
 #define STATE_H
 
+
+#include "GameObject.h"
 #include <vector>
 #include <memory>
-#include "Sprite.h"
-#include "GameObject.h"
-#include "TileSet.h"
-#include "TileMap.h"
-#include "InputManager.h"
+
+
 class State
 {
-public:
-	State();
-	~State();
+	public:
+		State();
+		virtual ~State();
 
-	bool QuitRequested();
-	void LoadAssets();
-	void Update();
-	void Render();
-	// metodos trab2
-	//void Input();
-	//void AddObject(int mouseX, int mouseY);
-	void AddObject(GameObject* ptr);
-private:
-	Sprite bg;
-	
-	TileSet tileSet;
-	TileMap *tileMap;
+		virtual void Update(float dt)=0;
+		virtual void Render()=0;
 
-	bool quitRequested;
-	std::vector<std::unique_ptr<GameObject>> objectArray;
-	InputManager &inputManager;
+		virtual void Pause()=0;
+		virtual void Resume()=0;
+		
+		virtual void AddObject(GameObject* object);
+		
+		bool PopRequested();
+		bool QuitRequested();
 
+	protected:
+		virtual void UpdateArray(float dt);
+		virtual void RenderArray(float dt);
+
+		bool popRequested, quitRequested;
+		std::vector<std::unique_ptr<GameObject>> objectArray;
 
 
 };

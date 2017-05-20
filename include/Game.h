@@ -1,10 +1,16 @@
 
 #include "SDL2/SDL.h"
 #include "SDL2/SDL_image.h"
-#include "State.h"
+#include "SDL2/SDL_mixer.h"
 
 #ifndef MEUPROJETO_GAME_H
 #define MEUPROJETO_GAME_H
+
+#include "StageState.h"
+#include <stack>
+#include "State.h"
+#include "InputManager.h"
+#include "Vec2.h"
 
 class Game
 {
@@ -12,24 +18,30 @@ public:
 	Game(string,int, int);
 	~Game();
 
-	void Run();
-	SDL_Renderer* GetRenderer();
-	State& GetState();
 	static Game& GetInstance();
+	SDL_Renderer* GetRenderer();
 
+	State& GetCurrentState();	
+	void Push(State* state);
+	void Run();
 	float GetDeltaTime();
+
+	//StageState& GetState();
+
 private:
+
+	void CalculateDeltaTime();
 
 	static Game* instance;
 	SDL_Window* window;
 	SDL_Renderer* renderer;
-	State* state;
+	//StageState* state;
 	InputManager &inputManager;
-	//t4
-	void CalculateDeltaTime();
-
 	int frameStart;
 	float dt;
+	Game* istance;
+	State* storedState;
+	std::stack< std::unique_ptr<State> > stateStack;
 
 
 };

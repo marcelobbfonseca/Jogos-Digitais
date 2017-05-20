@@ -6,6 +6,7 @@
 #include "Bullet.h"
 #include "Animation.h"
 #include "Penguins.h"
+#include "Sound.h"
 
 #define MOVE_TYPE 0
 #define SHOOT_TYPE 1
@@ -16,7 +17,7 @@
 #define ALIEN_DMG 9
 #define ALIEN_SPRITES 4
 #define IS_CLOSE 150
-#define RESTING_COOLDOWN 2.2
+#define RESTING_COOLDOWN 1.8
 
 using std::vector;
  
@@ -41,6 +42,7 @@ Alien::Alien(float x, float y, int nMinions): sp(){
 
 	++alienCount;
 
+
 }
 
 void Alien::Update(float dt){
@@ -49,8 +51,6 @@ void Alien::Update(float dt){
 	if(Penguins::player == nullptr)
 		return;
 	
-	//InputManager &i = InputManager::GetInstance();
-
 	if(state == RESTING){
 		restTimer.Update(dt);
 		if(RESTING_COOLDOWN < restTimer.Get()){
@@ -83,8 +83,7 @@ void Alien::Update(float dt){
 
 			restTimer.Restart();
 			state = RESTING;
-			
-
+		
 		}
 		else{
 			box = box + speed*dt;
@@ -132,7 +131,11 @@ void Alien::NotifyCollision(GameObject& other){
 				printf("TA QUASE SEM VIDA! VAI MORRE VAI MORRE!\n");
 			if(isDead()){
 				printf("morri :(   \n");
-				Game::GetInstance().GetState().AddObject(new Animation(box.x, box.y, rotation, "img/aliendeath.png", 4, 0.3, true));
+				Sound deathSound("audio/boom.wav");
+				deathSound.Play(0/*play once*/); 
+				
+				Game::GetInstance().GetCurrentState().AddObject(new Animation(box.x, box.y, rotation, "img/aliendeath.png", 4, 0.3, true));
+				
 				//~Alien();
 
 			}

@@ -15,10 +15,10 @@ using std::cout;
 using std::string;
 
 #include "Game.h"
-#include "State.h"
+#include "StageState.h"
 #include "Sprite.h"
 #include "error.h"
-
+#include "TitleState.h"
 
 //use valgrind --leak-check=full ./vamola
 
@@ -30,6 +30,9 @@ int main(int argc, char const *argv[]){
 	height = 600;
 	
 	Game game(title,width,height);
+	//game.Push( new TitleState());
+	game.Push( new StageState());
+	
 	game.Run();
 
 	return 0;

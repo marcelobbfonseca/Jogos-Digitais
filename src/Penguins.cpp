@@ -4,6 +4,7 @@
 #include "Collision.h"
 #include "Bullet.h"
 #include "Animation.h"
+#include "Sound.h"
 
 #define PENGUIN_BULLET_SPEED 120
 #define PENGUIN_BULLET_MAX_DISTANCE 540
@@ -104,7 +105,7 @@ void Penguins::Shoot(){
 								"img/penguinbullet.png", PENGUIN_BULLET_SPRITE_TIME, 
 								PENGUIN_BULLET_SPRITES, false
 								); //PENGUIN_BULLET_SPRITES
-	Game::GetInstance().GetState().AddObject(bullet);
+	Game::GetInstance().GetCurrentState().AddObject(bullet);
 }
 
 bool Penguins::Is(string type){
@@ -118,7 +119,9 @@ void Penguins::NotifyCollision(GameObject& other){
 			printf("(%d)IM HIT!! !!\n", hp);
 			if(isDead()){
 				printf("Dear diary, today i died.\n");
-				Game::GetInstance().GetState().AddObject( new Animation(box.x, box.y, rotation, "img/penguindeath.png", 5, 0.3, true));
+				Sound deathSound("audio/boom.wav");
+				deathSound.Play(0/*play once*/); 
+				Game::GetInstance().GetCurrentState().AddObject( new Animation(box.x, box.y, rotation, "img/penguindeath.png", 5, 0.3, true));
 				Camera::Unfollow();
 			}
 		}
