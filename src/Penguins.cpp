@@ -6,7 +6,7 @@
 #include "Animation.h"
 #include "Sound.h"
 
-#define PENGUIN_BULLET_SPEED 120
+#define PENGUIN_BULLET_SPEED 200.0
 #define PENGUIN_BULLET_MAX_DISTANCE 540
 #define PENGUIN_DMG 33
 
@@ -18,9 +18,9 @@ using std::string;
 
 Penguins* Penguins::player = nullptr;
 
-Penguins::Penguins(float x, float y): GameObject(), speed(){
-	bodySp.Open("img/penguin.png");
-	cannonSp.Open("img/cubngun.png");
+Penguins::Penguins(float x, float y): bodySp("img/penguin.png"), cannonSp("img/cubngun.png"), GameObject(), speed(){
+	//bodySp.Open("img/penguin.png");
+	//cannonSp.Open("img/cubngun.png");
 
 	box.x = x; //- bodySp.GetWidth()/2; 
 	box.y = y; // - bodySp.GetHeight()/2;

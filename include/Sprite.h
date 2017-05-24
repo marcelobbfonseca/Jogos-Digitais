@@ -1,8 +1,11 @@
-#include "SDL2/SDL.h"
-#include "SDL2/SDL_image.h"
+
 
 #ifndef SPRITE_H
 #define SPRITE_H
+
+#include "SDL2/SDL.h"
+#include "SDL2/SDL_image.h"
+
 #include <iostream>
 #include <string>
 using std::string;
@@ -12,7 +15,7 @@ class Sprite
 {
 public:
 	Sprite();
-	Sprite(string file,int frameCount=1, float frameTime=1.0 ); //
+	Sprite(string file, int frameCount=1, float frameTime=1.0 ); //
 	void Open(string file);
 	void SetClip(int x, int y, int w, int h);
 	void Render( int x, int y, float angle=0);

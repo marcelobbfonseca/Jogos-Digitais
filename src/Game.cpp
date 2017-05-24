@@ -110,7 +110,8 @@ void Game::Run(){
 			stateStack.pop();
 			Resources::ClearImages();
 			Resources::ClearMusic();
-			
+			Resources::ClearFont();
+			Resources::ClearSound();
 			if(!stateStack.empty())
 				stateStack.top()->Resume();
 			
@@ -123,7 +124,6 @@ void Game::Run(){
 			stateStack.push(std::unique_ptr<State>(storedState));
 			storedState= nullptr;
 		}
-
 		
 		SDL_Delay(33); 
 	}
@@ -166,6 +166,7 @@ Game::~Game(){
 	while(!stateStack.empty()){
 		stateStack.pop();
 	}
+	
 	TTF_Quit();
 	Mix_CloseAudio();
 	Mix_Quit();

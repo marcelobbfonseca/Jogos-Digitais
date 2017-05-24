@@ -1,7 +1,7 @@
 #include "Bullet.h"
 #include "error.h"
 #include "Collision.h"
-#define BULLET_SPEED 200
+#define BULLET_SPEED 200.0
 
 
 using std::string;
@@ -15,7 +15,7 @@ Bullet::Bullet( float x, float y,
 	box.w = sp.GetWidth();
 	box.h = sp.GetHeight();
 	this->angle = angle;
-	this->speed= Vec2(BULLET_SPEED, 0).Rotate(angle);
+	this->speed = Vec2(speed, 0).Rotate(angle);
 	distanceLeft = maxDistance;
 	this->targetsPlayer = targetsPlayer;
 }

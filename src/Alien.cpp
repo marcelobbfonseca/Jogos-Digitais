@@ -10,23 +10,23 @@
 
 #define MOVE_TYPE 0
 #define SHOOT_TYPE 1
-#define FULL_HEALTH 30
+#define FULL_HEALTH 100
 #define DISTANCE_TOLERANCE 5
 #define PI 3.141592
 #define DISTANCE_INITIALIZE 999999
 #define ALIEN_DMG 9
 #define ALIEN_SPRITES 4
 #define IS_CLOSE 150
-#define RESTING_COOLDOWN 1.8
+#define RESTING_COOLDOWN 1.6
 
 using std::vector;
  
 typedef unsigned int uint;
 int Alien::alienCount=0;
 
-Alien::Alien(float x, float y, int nMinions): sp(){
+Alien::Alien(float x, float y, int nMinions): sp("img/alien.png"){
 	
-	sp.Open("img/alien.png");
+	//sp.Open("img/alien.png");
 	box.x = x - sp.GetWidth()/2; 
 	box.y = y - sp.GetHeight()/2;
 	box.w = sp.GetWidth();
@@ -125,12 +125,13 @@ void Alien::NotifyCollision(GameObject& other){
  
 	if (other.Is("Bullet")){
 		if( ( (Bullet&)other).GetTargetsPlayer()==false){
-			printf("ai ai To morrendo\n");
 			hp = hp - ALIEN_DMG;
+			printf("Alien hp:%d\n",hp);
 			if(hp<10)
 				printf("TA QUASE SEM VIDA! VAI MORRE VAI MORRE!\n");
 			if(isDead()){
-				printf("morri :(   \n");
+				printf("morri :(  %d \n", hp);
+				//alienCount--;
 				Sound deathSound("audio/boom.wav");
 				deathSound.Play(0/*play once*/); 
 				
@@ -147,8 +148,9 @@ void Alien::NotifyCollision(GameObject& other){
 
 
 Alien::~Alien(){
-	minionArray.clear();
 	alienCount--;
+	printf("DESTRUIU ALIEN \n");
+	minionArray.clear();
 }
 
 

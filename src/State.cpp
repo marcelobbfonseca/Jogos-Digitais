@@ -17,7 +17,7 @@ State::State(){
 
 
 State::~State(){
-
+    objectArray.clear();
 }
 
 void State::AddObject(GameObject* ptr){

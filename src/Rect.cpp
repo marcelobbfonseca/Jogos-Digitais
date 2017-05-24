@@ -1,10 +1,10 @@
 #include "Rect.h"
 
 Rect::Rect(){
-	this->x = 0;
-	this->y = 0;
-	this->w = 0;
-	this->h = 0;
+	this->x = 0.0;
+	this->y = 0.0;
+	this->w = 0.0;
+	this->h = 0.0;
 }
 
 Rect::Rect(float x, float y, float w, float h){
@@ -38,6 +38,7 @@ Rect Rect::operator=(Vec2 const &a){
 	return *this;
 }
 Vec2 Rect::Center() const{
+	
 	return Vec2(x+(w/2.0), y+(h/2.0) );
 }
 Rect::~Rect(){

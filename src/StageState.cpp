@@ -13,6 +13,7 @@ using std::string;
 #include "Alien.h"
 #include "Penguins.h"
 #include "Collision.h"
+#include "EndState.h"
 
 #define MUSIC_LOOP 8
 typedef unsigned int uint;
@@ -40,8 +41,15 @@ void StageState::Update(float dt){
  	//Game objects update loop
 	for(uint i = 0; i < objectArray.size(); i++){
         objectArray.at(i)->Update(dt);
-        
-        //collision detection
+
+        //death detection
+        if(objectArray[i]->isDead()){
+            objectArray.erase(objectArray.begin()+i);
+        }
+
+ 	}
+    //collision detection
+    for(uint i = 0; i < objectArray.size(); i++){
         for (uint j = 0; j < objectArray.size(); j++){
             //printf("olha o J: %u\n", j);
             if(j==i)continue; //skip checking collision with self
@@ -51,15 +59,21 @@ void StageState::Update(float dt){
                 objectArray[j]->NotifyCollision(*objectArray[i]);
             }
         }
-        //death detection
-        if(objectArray[i]->isDead()){
-            objectArray.erase(objectArray.begin()+i);
-        }
-
- 	}//end for objArrayLoop
-
-    
+    }
     Camera::Update(Game::GetInstance().GetDeltaTime());
+
+    //condiçao de vitoria/derrota
+    printf("alienCount:%d \n",Alien::alienCount);
+    if (Alien::alienCount == 0){ //win
+        printf("YOU WINNNN CAIUUUU!!\n");
+        popRequested= true;
+        Game::GetInstance().Push(new EndState(StateData(true)));
+    }
+    if(Penguins::player == nullptr){ //lose
+        printf("YOU LOOSE CAIUUUU!!\n");
+        popRequested= true;
+        Game::GetInstance().Push(new EndState(StateData(false)));
+    }
 }
 
 void StageState::Render(){
@@ -76,7 +90,7 @@ void StageState::Render(){
 
 StageState::~StageState(){
 	delete tileMap;
-	objectArray.clear();
+
 }
 
 

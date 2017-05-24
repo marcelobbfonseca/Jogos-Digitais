@@ -1,5 +1,6 @@
 #ifndef ENDSTATE_H
 #define ENDSTATE_H
+
 #include "State.h"
 #include "Sprite.h"
 #include "Music.h"

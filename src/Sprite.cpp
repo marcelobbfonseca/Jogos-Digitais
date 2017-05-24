@@ -30,6 +30,7 @@ Sprite::Sprite(string file, int frameCount /*=1*/, float frameTime /*=1.0*/){
 	this->frameTime = frameTime;
 	this->timeElapsed = 0.0;
 	this->currentFrame = 1;
+	//cout<<file << endl;
 	Open(file);
 	
 }
@@ -58,7 +59,8 @@ void Sprite::SetClip(int x, int y, int w, int h){
 }
 //wrapper for RenderCopy
 void Sprite::Render(int x, int y, float angle){
-	float degree = (angle * 180)/PI; //convert from radian to degree
+	
+	float degree = (angle * 180.0)/PI; //convert from radian to degree
 	
 	Game& game = Game::GetInstance();
 	SDL_Rect destRetangle;

@@ -29,8 +29,8 @@ void InputManager::Update(){
 	SDL_GetMouseState(&mouseX, &mouseY);
     while (SDL_PollEvent(&event)) { //if SDL_PollEvent find event. return 1
 	 	
-	 	if(event.key.repeat)
-	 		break;
+	 	//if(event.key.repeat)
+	 	//	break;
 
 	 	switch(event.type){
 	 		case SDL_QUIT:	

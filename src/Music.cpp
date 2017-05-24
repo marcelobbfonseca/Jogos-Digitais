@@ -18,10 +18,7 @@ void Music::Stop(){
 	Mix_FadeOutMusic(1200 /*milisecounds*/);
 }
 void Music::Open(string file){
-	printf("passou aqui\n");
 	music = Resources::GetMusic(file);
-	std::cout << music << std::endl;
-	printf("pegou musica!\n");
 }
 bool Music::IsOpen(){
 	if (music != nullptr)

@@ -1,35 +1,3 @@
-bin/main.o: src/main.cpp include/Game.h include/StageState.h \
- include/Sprite.h include/GameObject.h include/Rect.h include/Vec2.h \
- include/TileSet.h include/TileMap.h include/InputManager.h \
- include/State.h include/Music.h include/StageState.h include/Sprite.h \
- include/error.h include/TitleState.h
-
-include/Game.h:
-
-include/StageState.h:
-
-include/Sprite.h:
-
-include/GameObject.h:
-
-include/Rect.h:
+bin/Vec2.o: src/Vec2.cpp include/Vec2.h
 
 include/Vec2.h:
-
-include/TileSet.h:
-
-include/TileMap.h:
-
-include/InputManager.h:
-
-include/State.h:
-
-include/Music.h:
-
-include/StageState.h:
-
-include/Sprite.h:
-
-include/error.h:
-
-include/TitleState.h:
