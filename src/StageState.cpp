@@ -36,18 +36,10 @@ void StageState::Update(float dt){
     
     if(inputManager.QuitRequested())
         quitRequested=true;
-
     
  	//Game objects update loop
-	for(uint i = 0; i < objectArray.size(); i++){
-        objectArray.at(i)->Update(dt);
-
-        //death detection
-        if(objectArray[i]->isDead()){
-            objectArray.erase(objectArray.begin()+i);
-        }
-
- 	}
+	UpdateArray(dt);
+    
     //collision detection
     for(uint i = 0; i < objectArray.size(); i++){
         for (uint j = 0; j < objectArray.size(); j++){
@@ -63,7 +55,7 @@ void StageState::Update(float dt){
     Camera::Update(Game::GetInstance().GetDeltaTime());
 
     //condiçao de vitoria/derrota
-    printf("alienCount:%d \n",Alien::alienCount);
+    //printf("alienCount:%d \n",Alien::alienCount);
     if (Alien::alienCount == 0){ //win
         printf("YOU WINNNN CAIUUUU!!\n");
         popRequested= true;

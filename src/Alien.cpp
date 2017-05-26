@@ -14,7 +14,7 @@
 #define DISTANCE_TOLERANCE 5
 #define PI 3.141592
 #define DISTANCE_INITIALIZE 999999
-#define ALIEN_DMG 9
+#define ALIEN_DMG 2
 #define ALIEN_SPRITES 4
 #define IS_CLOSE 150
 #define RESTING_COOLDOWN 1.6
@@ -24,7 +24,7 @@ using std::vector;
 typedef unsigned int uint;
 int Alien::alienCount=0;
 
-Alien::Alien(float x, float y, int nMinions): sp("img/alien.png"){
+Alien::Alien(float x, float y, int nMinions): sp("img/alien.png"), GameObject(), destination(), speed(), restTimer(){
 	
 	//sp.Open("img/alien.png");
 	box.x = x - sp.GetWidth()/2; 
@@ -32,6 +32,7 @@ Alien::Alien(float x, float y, int nMinions): sp("img/alien.png"){
 	box.w = sp.GetWidth();
 	box.h = sp.GetHeight();
 	
+	//restTimer = 0.0;
 	state = RESTING;
 	hp = FULL_HEALTH;
 
@@ -54,7 +55,7 @@ void Alien::Update(float dt){
 	if(state == RESTING){
 		restTimer.Update(dt);
 		if(RESTING_COOLDOWN < restTimer.Get()){
-			destination= Penguins::player->box.Center();
+			destination= Penguins::player->box.Center(); //valgrind afinding unitialized value here
 			speed= Penguins::player->box.Center()-box.Center();
 			speed.Normalize();
 			speed= speed*ALIEN_MOVE_SPEED;
@@ -66,12 +67,11 @@ void Alien::Update(float dt){
 	else if(state == MOVING){
 		if( IS_CLOSE > ( ( destination-box.Center() ).Magnitude() ) ){
 
-			//box = box + destination - box.Center();
 			Vec2 targetPos = Penguins::player->box.Center();
 
 			float minimumDistance = DISTANCE_INITIALIZE;
 			float minionDistance = 0;
-			uint closerMinion;
+			uint closerMinion=0;
 			for (uint i = 0; i < minionArray.size(); i++){
 				minionDistance = minionArray.at(i).box.Center().Distance(targetPos);
 				if(minionDistance < minimumDistance ){
@@ -161,6 +161,8 @@ Alien::Action::Action(ActionType type, float x, float y){
 	this->type = type;
 	this->pos.x=x;
 	this->pos.y=y;
+	box = box + destination - box.Center();
+
 }
 
 	//mouse esquerdo para tiro e direito para movimento

@@ -1,7 +1,7 @@
 #include "EndState.h"
 #include "InputManager.h"
 #include "Game.h"
-EndState::EndState(StateData stateData): 
+EndState::EndState(StateData stateData): State(),
 	music((stateData.playerVictory)?"audio/endStateWin.ogg": "audio/endStateLose.ogg"),
 	instruction("font/Call me maybe.ttf",40 /*font size*/,BLENDED,((stateData.playerVictory)?"You Win!":"You Lose!") ,{255, 255, 255, 255}) 
 {

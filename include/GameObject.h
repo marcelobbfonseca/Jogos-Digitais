@@ -9,7 +9,7 @@ class GameObject
 {
 public:
 	GameObject();
-	~GameObject();
+	virtual ~GameObject();
 
 	virtual void Update(float dt)=0;
 	virtual void Render()=0;
