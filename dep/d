@@ -1,13 +1,10 @@
-bin/Penguins.o: src/Penguins.cpp include/Penguins.h include/Sprite.h \
- include/GameObject.h include/Rect.h include/Vec2.h \
- include/InputManager.h include/Camera.h include/Game.h \
- include/StageState.h include/TileSet.h include/TileMap.h include/State.h \
- include/Music.h include/Collision.h include/Bullet.h include/Animation.h \
- include/Timer.h include/Sound.h
-
-include/Penguins.h:
-
-include/Sprite.h:
+bin/StageState.o: src/StageState.cpp include/GameObject.h include/Rect.h \
+ include/Vec2.h include/Face.h include/GameObject.h include/Sprite.h \
+ include/StageState.h include/TileSet.h include/TileMap.h \
+ include/InputManager.h include/State.h include/Music.h include/Camera.h \
+ include/Game.h include/StageState.h include/error.h include/Alien.h \
+ include/Minion.h include/Timer.h include/Penguins.h include/Collision.h \
+ include/EndState.h include/Text.h include/StateData.h
 
 include/GameObject.h:
 
@@ -15,11 +12,11 @@ include/Rect.h:
 
 include/Vec2.h:
 
-include/InputManager.h:
+include/Face.h:
 
-include/Camera.h:
+include/GameObject.h:
 
-include/Game.h:
+include/Sprite.h:
 
 include/StageState.h:
 
@@ -27,16 +24,32 @@ include/TileSet.h:
 
 include/TileMap.h:
 
+include/InputManager.h:
+
 include/State.h:
 
 include/Music.h:
 
-include/Collision.h:
+include/Camera.h:
 
-include/Bullet.h:
+include/Game.h:
 
-include/Animation.h:
+include/StageState.h:
+
+include/error.h:
+
+include/Alien.h:
+
+include/Minion.h:
 
 include/Timer.h:
 
-include/Sound.h:
+include/Penguins.h:
+
+include/Collision.h:
+
+include/EndState.h:
+
+include/Text.h:
+
+include/StateData.h:

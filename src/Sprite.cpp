@@ -30,7 +30,6 @@ Sprite::Sprite(string file, int frameCount /*=1*/, float frameTime /*=1.0*/){
 	this->frameTime = frameTime;
 	this->timeElapsed = 0.0;
 	this->currentFrame = 1;
-	//cout<<file << endl;
 	Open(file);
 	
 }
@@ -48,7 +47,6 @@ void Sprite::Open(string file){
 		ErrorExit(__LINE__, SDL_GetError(), __FILE__);
 	}
 	SetClip(0,0,width/frameCount,height);
-	//Render(0,0,0);
 }
 
 void Sprite::SetClip(int x, int y, int w, int h){

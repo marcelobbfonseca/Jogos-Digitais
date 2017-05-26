@@ -7,7 +7,7 @@
 //in radians
 #define MINION_CONST_SPEED 0.06
 //Bullet speed and max distance
-#define BULLET_SPEED 200
+#define BULLET_SPEED 350
 #define MAX_DISTANCE 600
 //Used to turn minion back to Alien
 #define MINION_ROTATION_OFFSET 1.383 
@@ -16,6 +16,10 @@
 //used to sort random minion size
 #define MINION_SIZE_HI 1.5
 #define MINION_SIZE_LO 1.0
+
+#define MINION_BULLET_LO 150.0
+#define MINION_BULLET_HI 550.0
+
 
 #define MINION_BULLET_SPRITES 3
 #define MINION_BULLET_SPRITE_TIME 0.05
@@ -58,13 +62,16 @@ bool Minion::isDead(){
 }
 void Minion::Shoot(Vec2 pos){
 	float xNew,yNew, angle;
+	float bulletSpeed = MINION_BULLET_LO + static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/(MINION_BULLET_HI-MINION_BULLET_LO)));
 	
+
 	Vec2 PosNew = pos-box;
 	angle = PosNew.InclineVet();
 
 	xNew = box.x-Camera::pos.x + sp.GetWidth()/2;
 	yNew = box.y-Camera::pos.y + sp.GetHeight()/2; 
-	Bullet* bullet= new Bullet(xNew,yNew,angle,BULLET_SPEED,MAX_DISTANCE,"img/minionbullet2.png", 0.05/*MINION_BULLET_SPRITE_TIME*/, MINION_BULLET_SPRITES, true);
+
+	Bullet* bullet= new Bullet(xNew,yNew,angle,bulletSpeed,MAX_DISTANCE,"img/minionbullet2.png", 0.05/*MINION_BULLET_SPRITE_TIME*/, MINION_BULLET_SPRITES, true);
 	Game::GetInstance().GetCurrentState().AddObject(bullet);
 
 }

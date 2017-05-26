@@ -23,6 +23,7 @@ StageState::StageState() : music("audio/stageState.ogg"), bg("img/ocean.jpg"), t
     tileMap = new TileMap("map/tileMap.txt", &tileSet);
 	quitRequested = false;
     objectArray.emplace_back(std::unique_ptr<Alien>( new Alien (512,300, 5) ));
+    objectArray.emplace_back(std::unique_ptr<Alien>( new Alien (412,700, 5) ));
     objectArray.push_back(std::unique_ptr<Penguins>( new Penguins (704,640) ) );
     music.Play(8);
 }
@@ -42,9 +43,9 @@ void StageState::Update(float dt){
     
     //collision detection
     for(uint i = 0; i < objectArray.size(); i++){
-        for (uint j = 0; j < objectArray.size(); j++){
+        for (uint j = i+1; j < objectArray.size(); j++){
             //printf("olha o J: %u\n", j);
-            if(j==i)continue; //skip checking collision with self
+            //if(j==i)continue; //skip checking collision with self
             
             if(Collision::IsColliding(objectArray[i]->box, objectArray[j]->box, objectArray[i]->rotation, objectArray[j]->rotation)){
                 objectArray[i]->NotifyCollision(*objectArray[j]);

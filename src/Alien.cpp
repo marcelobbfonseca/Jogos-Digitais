@@ -26,7 +26,6 @@ int Alien::alienCount=0;
 
 Alien::Alien(float x, float y, int nMinions): sp("img/alien.png"), GameObject(), destination(), speed(), restTimer(){
 	
-	//sp.Open("img/alien.png");
 	box.x = x - sp.GetWidth()/2; 
 	box.y = y - sp.GetHeight()/2;
 	box.w = sp.GetWidth();
@@ -79,6 +78,9 @@ void Alien::Update(float dt){
 					closerMinion = i;
 				}
 			}
+			
+			//Shooting bang bing pow!
+			minionArray.at(closerMinion).Shoot(targetPos);			
 			minionArray.at(closerMinion).Shoot(targetPos);			
 
 			restTimer.Restart();

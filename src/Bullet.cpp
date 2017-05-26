@@ -1,7 +1,7 @@
 #include "Bullet.h"
 #include "error.h"
 #include "Collision.h"
-#define BULLET_SPEED 200.0
+
 
 
 using std::string;

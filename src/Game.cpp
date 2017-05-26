@@ -74,11 +74,6 @@ State& Game::GetCurrentState(){
 	return *stateStack.top();
 }
 
-/*
-StageState& Game::GetState(){
-	return *state;
-}
-*/
 
 SDL_Renderer* Game::GetRenderer(){
 	return renderer;
@@ -127,19 +122,14 @@ void Game::Run(){
 		
 		SDL_Delay(33); 
 	}
+	while(!stateStack.empty())
+		stateStack.pop();
+	
+	Resources::ClearImages();
+	Resources::ClearMusic();
+	Resources::ClearFont();
+	Resources::ClearSound();
 
-	/*
-	state->LoadAssets();
-
-	while(state->QuitRequested()==false){
-		CalculateDeltaTime();
-		inputManager.Update();
-		state->Update();
-		state->Render();
-		SDL_RenderPresent(renderer);//update screen
-		SDL_Delay(33); 
-	}//end while main loop
-	Resources::ClearImages();*/
 }
 
 
