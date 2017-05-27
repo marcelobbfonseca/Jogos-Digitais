@@ -19,6 +19,7 @@ using std::string;
 #include "Sprite.h"
 #include "error.h"
 #include "TitleState.h"
+#include "EndState.h"
 
 //use valgrind --leak-check=full ./vamola
 
@@ -31,6 +32,7 @@ int main(int argc, char const *argv[]){
 	
 	Game game(title,width,height);
 	game.Push( new TitleState());
+	//game.Push( new EndState(StateData(true)));
 	//game.Push( new StageState());
 	
 	game.Run();

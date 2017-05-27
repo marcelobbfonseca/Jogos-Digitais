@@ -15,12 +15,12 @@ void TitleState::Update(float dt){
 
 	if(inputManager.KeyPress(ESPACE_KEY)){
 		Game::GetInstance().Push(new StageState());
+		//popRequested= true; dando problema no pop requested
 	}
 	else if(inputManager.QuitRequested()){
 		quitRequested= true;
-	}else if( inputManager.KeyPress(ESCAPE_KEY)){
-		popRequested= true;
 	}
+
 }
 
 

@@ -82,6 +82,7 @@ void Alien::Update(float dt){
 			//Shooting bang bing pow!
 			minionArray.at(closerMinion).Shoot(targetPos);			
 			minionArray.at(closerMinion).Shoot(targetPos);			
+			minionArray.at(closerMinion).Shoot(targetPos);			
 
 			restTimer.Restart();
 			state = RESTING;

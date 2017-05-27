@@ -67,9 +67,12 @@ void Sprite::Render(int x, int y, float angle){
 	destRetangle.y = y;
 	destRetangle.w = clipRect.w*scaleX;
 	destRetangle.h = clipRect.h*scaleY;
-	
+
 	if(SDL_RenderCopyEx(game.GetRenderer(), texture, &clipRect, &destRetangle,degree,NULL,SDL_FLIP_NONE)!=0)
 		ErrorExit(__LINE__, SDL_GetError(), __FILE__);
+
+
+
 }
 
 int Sprite::GetHeight(){

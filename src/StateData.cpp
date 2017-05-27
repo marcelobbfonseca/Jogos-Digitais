@@ -1,5 +1,5 @@
 #include "StateData.h"
 
 StateData::StateData(bool playerVictory){
-	playerVictory = playerVictory;
+	this->playerVictory = playerVictory;
 }

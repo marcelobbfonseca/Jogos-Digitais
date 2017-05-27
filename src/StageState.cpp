@@ -28,8 +28,6 @@ StageState::StageState() : music("audio/stageState.ogg"), bg("img/ocean.jpg"), t
     music.Play(8);
 }
 
-
-
 void StageState::Update(float dt){
     
     if(inputManager.KeyPress(ESCAPE_KEY))
@@ -44,9 +42,6 @@ void StageState::Update(float dt){
     //collision detection
     for(uint i = 0; i < objectArray.size(); i++){
         for (uint j = i+1; j < objectArray.size(); j++){
-            //printf("olha o J: %u\n", j);
-            //if(j==i)continue; //skip checking collision with self
-            
             if(Collision::IsColliding(objectArray[i]->box, objectArray[j]->box, objectArray[i]->rotation, objectArray[j]->rotation)){
                 objectArray[i]->NotifyCollision(*objectArray[j]);
                 objectArray[j]->NotifyCollision(*objectArray[i]);
@@ -56,7 +51,6 @@ void StageState::Update(float dt){
     Camera::Update(Game::GetInstance().GetDeltaTime());
 
     //condiçao de vitoria/derrota
-    //printf("alienCount:%d \n",Alien::alienCount);
     if (Alien::alienCount == 0){ //win
         printf("YOU WINNNN CAIUUUU!!\n");
         popRequested= true;
@@ -79,14 +73,10 @@ void StageState::Render(){
 
 }
 
-
-
 StageState::~StageState(){
 	delete tileMap;
 
 }
-
-
 
 void StageState::Pause(){
 
@@ -95,19 +85,3 @@ void StageState::Pause(){
 void StageState::Resume(){
 
 }
-
-
-
-/*
-void StageState::LoadAssets(){
- bg.Open("img/ocean.jpg");
-
-}
-void StageState::AddObject(GameObject* ptr){
-    //increment given gameobject to object array
-    objectArray.emplace_back(std::unique_ptr<GameObject>(ptr) );
-}
-bool StageState::QuitRequested(){
-    return quitRequested;
-}
-*/

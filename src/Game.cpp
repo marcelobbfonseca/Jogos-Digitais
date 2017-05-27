@@ -13,8 +13,6 @@ using std::string;
 Game* Game::instance= nullptr;
 
 Game::Game(string title, int width, int height) : inputManager(InputManager::GetInstance()){
-	
-
 
 	if(nullptr != instance ){
 		ErrorExit(__LINE__, "Existe uma segunda instancia do jogo! " ,__FILE__);
@@ -98,20 +96,19 @@ void Game::Run(){
 		inputManager.Update(); //GetDeltaTime()
 		stateStack.top()->Update(dt);
 		stateStack.top()->Render();
-		SDL_RenderPresent(renderer);//update screen
+		SDL_RenderPresent(renderer);//update screen	
 		
 		//UpdateStack
 		if(stateStack.top()->PopRequested()){
 			stateStack.pop();
-			Resources::ClearImages();
-			Resources::ClearMusic();
-			Resources::ClearFont();
-			Resources::ClearSound();
+			//Resources::ClearImages();
+			//Resources::ClearMusic();
+			//Resources::ClearFont();
+			//Resources::ClearSound();
 			if(!stateStack.empty())
 				stateStack.top()->Resume();
 			
-		}
-
+		}		
 		if(storedState != nullptr){
 			if(!stateStack.empty())
 				stateStack.top()->Pause();
@@ -122,13 +119,7 @@ void Game::Run(){
 		
 		SDL_Delay(33); 
 	}
-	while(!stateStack.empty())
-		stateStack.pop();
-	
-	Resources::ClearImages();
-	Resources::ClearMusic();
-	Resources::ClearFont();
-	Resources::ClearSound();
+
 
 }
 
